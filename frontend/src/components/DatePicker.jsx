@@ -3,7 +3,7 @@ import React from 'react'
 function DatePicker({ selected, onChange }) {
   const today = new Date()
   const dates = []
-  for (let i = 0; i < 14; i++) {
+  for (let i = 0; i < 60; i++) {
     const d = new Date(today)
     d.setDate(today.getDate() + i)
     dates.push(d)

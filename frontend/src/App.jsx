@@ -29,6 +29,7 @@ function App() {
   const [lastChecked, setLastChecked] = useState(null)
   const [filter, setFilter] = useState('all') // all, available, soldout
   const [showTheaterPicker, setShowTheaterPicker] = useState(false)
+  const [scanning, setScanning] = useState(false)
 
   function getToday() {
     return new Date().toISOString().split('T')[0]
@@ -66,6 +67,41 @@ function App() {
   useEffect(() => {
     checkAvailability()
   }, [selectedDate])
+
+  const findNextAvailable = async () => {
+    setScanning(true)
+    const today = new Date()
+    for (let i = 0; i < 60; i++) {
+      const d = new Date(today)
+      d.setDate(today.getDate() + i)
+      const dateStr = d.toISOString().split('T')[0]
+
+      try {
+        const controller = new AbortController()
+        const timeout = setTimeout(() => controller.abort(), 15000)
+        const res = await fetch(`${API_URL}/check?date=${dateStr}`, { signal: controller.signal })
+        clearTimeout(timeout)
+        const data = await res.json()
+        const results = data.results || {}
+
+        const hasAvailable = Object.entries(results).some(
+          ([id, status]) => selectedTheaters.has(id) && status.available
+        )
+
+        if (hasAvailable) {
+          setSelectedDate(dateStr)
+          setAvailability(results)
+          setLastChecked(new Date().toLocaleTimeString())
+          setScanning(false)
+          return
+        }
+      } catch (err) {
+        // Skip this date, try next
+      }
+    }
+    setScanning(false)
+    alert('No available showings found in the next 60 days for your selected theaters.')
+  }
 
   const updateSelectedTheaters = (next) => {
     setSelectedTheaters(next)
@@ -123,9 +159,27 @@ function App() {
             ))}
           </div>
 
-          {loading && (
-            <span style={{ marginLeft: 'auto', fontSize: 13, color: '#d97706' }}>
-              ⟳ Checking availability...
+          <button
+            onClick={findNextAvailable}
+            disabled={scanning || loading}
+            style={{
+              padding: '8px 16px',
+              borderRadius: 6,
+              border: 'none',
+              background: scanning ? '#525252' : '#d97706',
+              color: scanning ? '#a3a3a3' : '#000',
+              cursor: scanning ? 'wait' : 'pointer',
+              fontSize: 13,
+              fontWeight: 600,
+              marginLeft: 'auto',
+            }}
+          >
+            {scanning ? 'Scanning dates...' : 'Find Next Available'}
+          </button>
+
+          {loading && !scanning && (
+            <span style={{ fontSize: 13, color: '#d97706' }}>
+              ⟳ Checking...
             </span>
           )}
         </div>
