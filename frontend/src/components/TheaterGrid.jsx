@@ -23,13 +23,17 @@ function TheaterGrid({ theaters, availability, date }) {
 }
 
 function TheaterCard({ theater, status, date }) {
-  const { available, showtimes = [], soldOut, has70mm } = status
+  const { available, showtimes = [], soldOut, has70mm, notChecked } = status
 
   let borderColor = '#333'
   let statusText = 'Checking...'
   let statusColor = '#737373'
 
-  if (available) {
+  if (notChecked) {
+    borderColor = '#3f3f46'
+    statusText = 'Not yet posted'
+    statusColor = '#71717a'
+  } else if (available) {
     borderColor = '#16a34a'
     statusText = 'AVAILABLE'
     statusColor = '#4ade80'

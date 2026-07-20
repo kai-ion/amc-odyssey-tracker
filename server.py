@@ -63,14 +63,30 @@ async def run_check(date_str):
     results = {}
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
-        context = await browser.new_context(
-            user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+        browser = await p.chromium.launch(
+            headless=True,
+            args=["--disable-blink-features=AutomationControlled"],
         )
+        context = await browser.new_context(
+            user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            viewport={"width": 1440, "height": 900},
+            locale="en-US",
+        )
+        # Hide webdriver detection
+        await context.add_init_script("""
+            Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+        """)
         page = await context.new_page()
 
         for theater in IMAX_70MM_THEATERS:
-            result = await check_theater(page, theater, date_str)
+            try:
+                result = await asyncio.wait_for(
+                    check_theater(page, theater, date_str),
+                    timeout=15
+                )
+            except asyncio.TimeoutError:
+                result = {"available": False, "error": "timeout"}
+
             results[theater["id"]] = {
                 "available": result.get("available", False),
                 "showtimes": result.get("showtimes", []),
@@ -78,7 +94,7 @@ async def run_check(date_str):
                 "has70mm": result.get("has_70mm", False),
                 "error": result.get("error"),
             }
-            await page.wait_for_timeout(500)
+            await page.wait_for_timeout(1000)
 
         await browser.close()
 

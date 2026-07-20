@@ -32,23 +32,28 @@ function App() {
   const checkAvailability = async () => {
     setLoading(true)
     try {
-      const res = await fetch(`${API_URL}/check?date=${selectedDate}`)
+      const controller = new AbortController()
+      const timeout = setTimeout(() => controller.abort(), 10000) // 10s timeout
+
+      const res = await fetch(`${API_URL}/check?date=${selectedDate}`, { signal: controller.signal })
+      clearTimeout(timeout)
       const data = await res.json()
       setAvailability(data.results || {})
       setLastChecked(new Date().toLocaleTimeString())
     } catch (err) {
-      // If backend is down, use mock data for demo
+      // Backend down or timeout — show status as "not yet available"
       const mock = {}
       THEATERS.forEach(t => {
         mock[t.id] = {
-          available: Math.random() > 0.7,
-          showtimes: Math.random() > 0.7 ? ['2:00 PM', '6:30 PM', '10:00 PM'].slice(0, Math.floor(Math.random() * 3) + 1) : [],
-          soldOut: Math.random() > 0.8,
+          available: false,
+          showtimes: [],
+          soldOut: false,
           has70mm: true,
+          notChecked: true,
         }
       })
       setAvailability(mock)
-      setLastChecked(new Date().toLocaleTimeString() + ' (demo)')
+      setLastChecked(new Date().toLocaleTimeString() + ' (backend unavailable)')
     }
     setLoading(false)
   }
