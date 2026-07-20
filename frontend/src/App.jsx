@@ -21,8 +21,14 @@ const THEATERS = [
 function App() {
   const [selectedDate, setSelectedDate] = useState(getToday())
   const [selectedTheaters, setSelectedTheaters] = useState(() => {
+    const validIds = new Set(THEATERS.map(t => t.id))
     const saved = localStorage.getItem('selectedTheaters')
-    return saved ? new Set(JSON.parse(saved)) : new Set(THEATERS.map(t => t.id))
+    if (saved) {
+      // Keep only IDs that still exist (handles migration from old numeric IDs)
+      const parsed = JSON.parse(saved).filter(id => validIds.has(id))
+      if (parsed.length > 0) return new Set(parsed)
+    }
+    return new Set(THEATERS.map(t => t.id))
   })
   const [availability, setAvailability] = useState({})
   const [loading, setLoading] = useState(false)
