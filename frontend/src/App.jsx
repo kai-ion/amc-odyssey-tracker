@@ -272,8 +272,11 @@ function App() {
                 <div style={{ fontSize: 15, color: '#e5e5e5', marginBottom: 4 }}>
                   {findResult.theater} — {findResult.location}
                 </div>
+                <div style={{ fontSize: 14, color: '#f59e0b', fontWeight: 600, marginBottom: 4 }}>
+                  {findResult.dateDisplay || findResult.date}
+                </div>
                 <div style={{ fontSize: 13, color: '#a3a3a3', marginBottom: 12 }}>
-                  Showtimes: {findResult.showtimes?.join(', ')}
+                  IMAX 70mm showtimes: {findResult.showtimes?.join(', ')}
                 </div>
                 <a
                   href={findResult.url}

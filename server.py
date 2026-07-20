@@ -22,19 +22,20 @@ DATA_DIR.mkdir(exist_ok=True)
 
 MOVIE_SLUG = "the-odyssey-76238"
 
-# Theater slug mapping (slug is what the GraphQL API needs)
+# Theater slug + IANA timezone (to convert UTC showtimes to local)
 THEATERS = [
-    {"id": "amc-lincoln-square-13", "name": "AMC Lincoln Square 13", "location": "New York, NY"},
-    {"id": "amc-metreon-16", "name": "AMC Metreon 16", "location": "San Francisco, CA"},
-    {"id": "amc-universal-citywalk-19", "name": "AMC Universal CityWalk", "location": "Universal City, CA"},
-    {"id": "amc-century-city-15", "name": "AMC Century City 15", "location": "Los Angeles, CA"},
-    {"id": "amc-king-of-prussia-16", "name": "AMC King of Prussia 16", "location": "King of Prussia, PA"},
-    {"id": "amc-navy-pier-imax", "name": "AMC Navy Pier IMAX", "location": "Chicago, IL"},
-    {"id": "amc-northpark-15", "name": "AMC NorthPark 15", "location": "Dallas, TX"},
-    {"id": "amc-aventura-24", "name": "AMC Aventura 24", "location": "Aventura, FL"},
-    {"id": "amc-tysons-corner-16", "name": "AMC Tysons Corner 16", "location": "McLean, VA"},
-    {"id": "amc-garden-state-16", "name": "AMC Garden State 16", "location": "Paramus, NJ"},
+    {"id": "amc-lincoln-square-13", "name": "AMC Lincoln Square 13", "location": "New York, NY", "tz": "America/New_York"},
+    {"id": "amc-metreon-16", "name": "AMC Metreon 16", "location": "San Francisco, CA", "tz": "America/Los_Angeles"},
+    {"id": "amc-universal-citywalk-19", "name": "AMC Universal CityWalk", "location": "Universal City, CA", "tz": "America/Los_Angeles"},
+    {"id": "amc-century-city-15", "name": "AMC Century City 15", "location": "Los Angeles, CA", "tz": "America/Los_Angeles"},
+    {"id": "amc-king-of-prussia-16", "name": "AMC King of Prussia 16", "location": "King of Prussia, PA", "tz": "America/New_York"},
+    {"id": "amc-navy-pier-imax", "name": "AMC Navy Pier IMAX", "location": "Chicago, IL", "tz": "America/Chicago"},
+    {"id": "amc-northpark-15", "name": "AMC NorthPark 15", "location": "Dallas, TX", "tz": "America/Chicago"},
+    {"id": "amc-aventura-24", "name": "AMC Aventura 24", "location": "Aventura, FL", "tz": "America/New_York"},
+    {"id": "amc-tysons-corner-16", "name": "AMC Tysons Corner 16", "location": "McLean, VA", "tz": "America/New_York"},
+    {"id": "amc-garden-state-16", "name": "AMC Garden State 16", "location": "Paramus, NJ", "tz": "America/New_York"},
 ]
+TZ_BY_ID = {t["id"]: t["tz"] for t in THEATERS}
 
 FORMAT_FILTER = {"imax70mm"}  # Only true IMAX 70mm
 
@@ -63,7 +64,7 @@ def check_availability():
             available = [s for s in shows if s["available"]]
             results[theater["id"]] = {
                 "available": len(available) > 0,
-                "showtimes": [fmt_time(s["datetimeUtc"]) for s in available],
+                "showtimes": [fmt_time(s["datetimeUtc"], theater["tz"]) for s in available],
                 "allShowtimes": len(shows),
                 "soldOut": len(shows) > 0 and len(available) == 0,
                 "has70mm": len(shows) > 0,
@@ -108,7 +109,8 @@ def find_next():
                         "location": t["location"],
                         "theaterId": tid,
                         "date": date,
-                        "showtimes": [fmt_time(s["datetimeUtc"]) for s in available],
+                        "dateDisplay": datetime.fromisoformat(date).strftime("%A, %B %-d, %Y"),
+                        "showtimes": [fmt_time(s["datetimeUtc"], t["tz"]) for s in available],
                         "url": f"https://www.amctheatres.com/movies/{MOVIE_SLUG}/showtimes/all/{date}/{tid}/all",
                     })
             except Exception:
@@ -131,13 +133,15 @@ def health():
     return jsonify({"status": "ok", "time": datetime.now().isoformat()})
 
 
-def fmt_time(utc_str):
-    """Convert UTC datetime string to a readable local-ish time (HH:MM)."""
+def fmt_time(utc_str, tz_name="America/New_York"):
+    """Convert a UTC datetime string to the theater's local time (e.g. '10:00 PM')."""
     if not utc_str:
         return "?"
     try:
+        from zoneinfo import ZoneInfo
         dt = datetime.fromisoformat(utc_str.replace("Z", "+00:00"))
-        return dt.strftime("%-I:%M %p")
+        local = dt.astimezone(ZoneInfo(tz_name))
+        return local.strftime("%-I:%M %p")
     except Exception:
         return utc_str[11:16] if len(utc_str) > 16 else utc_str
 
