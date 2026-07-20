@@ -50,6 +50,19 @@ def list_theaters():
     return jsonify({"theaters": IMAX_70MM_THEATERS})
 
 
+@app.route("/find-next")
+def find_next_available():
+    """Scan dates until we find one with available tickets."""
+    theater_ids = request.args.get("theaters", "").split(",")
+    days = int(request.args.get("days", 30))
+
+    from checker import IMAX_70MM_THEATERS
+    theaters = [t for t in IMAX_70MM_THEATERS if t["id"] in theater_ids] if theater_ids[0] else IMAX_70MM_THEATERS
+
+    result = asyncio.run(run_find_next(theaters, days))
+    return jsonify(result)
+
+
 @app.route("/health")
 def health():
     return jsonify({"status": "ok", "time": datetime.now().isoformat()})
@@ -94,6 +107,64 @@ async def run_check(date_str):
                 "has70mm": result.get("has_70mm", False),
                 "error": result.get("error"),
             }
+            await page.wait_for_timeout(1000)
+
+        await browser.close()
+
+    return results
+
+
+async def run_find_next(theaters, max_days):
+    """Scan dates across theaters — check the AMC listing page which shows all dates at once."""
+    from playwright.async_api import async_playwright
+    from datetime import timedelta
+    import re
+
+    results = {"found": False, "date": None, "theater": None, "showtimes": []}
+
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(
+            headless=True,
+            args=["--disable-blink-features=AutomationControlled"],
+        )
+        context = await browser.new_context(
+            user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            viewport={"width": 1440, "height": 900},
+        )
+        await context.add_init_script("Object.defineProperty(navigator, 'webdriver', { get: () => undefined });")
+        page = await context.new_page()
+
+        for theater in theaters:
+            # AMC's movie page for a theater shows all available dates
+            url = f"https://www.amctheatres.com/movies/the-odyssey-2025/showtimes/the-odyssey-2025/{datetime.now().strftime('%Y-%m-%d')}/{theater['id']}/all"
+            try:
+                await page.goto(url, wait_until="domcontentloaded", timeout=20000)
+                await page.wait_for_timeout(3000)
+
+                content = await page.content()
+
+                # Look for any available showtime on ANY date shown on the page
+                # AMC pages often list multiple dates with showtimes
+                has_showtimes = bool(re.findall(r'\b\d{1,2}:\d{2}\s*(?:AM|PM)\b', content))
+                not_sold_out = "sold out" not in content.lower()
+                has_70mm = "70mm" in content.lower()
+
+                if has_showtimes and not_sold_out and has_70mm:
+                    times = re.findall(r'\b(\d{1,2}:\d{2}\s*(?:AM|PM))\b', content)
+                    results = {
+                        "found": True,
+                        "theater": theater["name"],
+                        "location": theater["location"],
+                        "theaterId": theater["id"],
+                        "showtimes": list(set(times))[:5],
+                        "url": url,
+                    }
+                    await browser.close()
+                    return results
+
+            except Exception as e:
+                continue
+
             await page.wait_for_timeout(1000)
 
         await browser.close()

@@ -30,6 +30,7 @@ function App() {
   const [filter, setFilter] = useState('all') // all, available, soldout
   const [showTheaterPicker, setShowTheaterPicker] = useState(false)
   const [scanning, setScanning] = useState(false)
+  const [findResult, setFindResult] = useState(null)
 
   function getToday() {
     return new Date().toISOString().split('T')[0]
@@ -70,37 +71,24 @@ function App() {
 
   const findNextAvailable = async () => {
     setScanning(true)
-    const today = new Date()
-    for (let i = 0; i < 60; i++) {
-      const d = new Date(today)
-      d.setDate(today.getDate() + i)
-      const dateStr = d.toISOString().split('T')[0]
+    try {
+      const theaterIds = [...selectedTheaters].join(',')
+      const controller = new AbortController()
+      const timeout = setTimeout(() => controller.abort(), 60000) // 60s for full scan
 
-      try {
-        const controller = new AbortController()
-        const timeout = setTimeout(() => controller.abort(), 15000)
-        const res = await fetch(`${API_URL}/check?date=${dateStr}`, { signal: controller.signal })
-        clearTimeout(timeout)
-        const data = await res.json()
-        const results = data.results || {}
+      const res = await fetch(`${API_URL}/find-next?theaters=${theaterIds}`, { signal: controller.signal })
+      clearTimeout(timeout)
+      const data = await res.json()
 
-        const hasAvailable = Object.entries(results).some(
-          ([id, status]) => selectedTheaters.has(id) && status.available
-        )
-
-        if (hasAvailable) {
-          setSelectedDate(dateStr)
-          setAvailability(results)
-          setLastChecked(new Date().toLocaleTimeString())
-          setScanning(false)
-          return
-        }
-      } catch (err) {
-        // Skip this date, try next
+      if (data.found) {
+        setFindResult(data)
+      } else {
+        setFindResult({ found: false, message: 'No available 70mm showings found. Tickets may not be on sale yet.' })
       }
+    } catch (err) {
+      setFindResult({ found: false, message: 'Could not reach server. Make sure the backend is running.' })
     }
     setScanning(false)
-    alert('No available showings found in the next 60 days for your selected theaters.')
   }
 
   const updateSelectedTheaters = (next) => {
@@ -267,6 +255,58 @@ function App() {
             color: '#a8a29e',
           }}>
             Could not reach AMC servers. Make sure the backend is running (<code>python server.py</code>) and try again.
+          </div>
+        )}
+
+        {/* Find Next Available result */}
+        {findResult && (
+          <div style={{
+            padding: '16px 20px',
+            marginBottom: 20,
+            borderRadius: 10,
+            background: findResult.found ? '#052e16' : '#1c1917',
+            border: `1px solid ${findResult.found ? '#166534' : '#44403c'}`,
+          }}>
+            {findResult.found ? (
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: '#4ade80', marginBottom: 8 }}>
+                  Tickets Available!
+                </div>
+                <div style={{ fontSize: 15, color: '#e5e5e5', marginBottom: 4 }}>
+                  {findResult.theater} — {findResult.location}
+                </div>
+                <div style={{ fontSize: 13, color: '#a3a3a3', marginBottom: 12 }}>
+                  Showtimes: {findResult.showtimes?.join(', ')}
+                </div>
+                <a
+                  href={findResult.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-block',
+                    padding: '8px 20px',
+                    borderRadius: 6,
+                    background: '#d97706',
+                    color: '#000',
+                    textDecoration: 'none',
+                    fontWeight: 600,
+                    fontSize: 13,
+                  }}
+                >
+                  Book Now →
+                </a>
+              </div>
+            ) : (
+              <div style={{ fontSize: 13, color: '#a8a29e' }}>
+                {findResult.message}
+              </div>
+            )}
+            <button
+              onClick={() => setFindResult(null)}
+              style={{ marginTop: 10, background: 'transparent', border: 'none', color: '#737373', cursor: 'pointer', fontSize: 12 }}
+            >
+              Dismiss
+            </button>
           </div>
         )}
 
