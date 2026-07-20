@@ -38,7 +38,8 @@ THEATERS = [
 ]
 TZ_BY_ID = {t["id"]: t["tz"] for t in THEATERS}
 
-FORMAT_FILTER = {"imax70mm"}  # Only true IMAX 70mm
+# Both premium 70mm formats — IMAX 70mm (premium large format) and standard 70mm
+FORMAT_FILTER = {"imax70mm", "70mm"}
 
 
 @app.route("/theaters")
@@ -69,16 +70,22 @@ def check_availability():
             for s in available:
                 avail_seats, total_seats = get_seat_count(s["showtimeId"])
                 time.sleep(0.3)
+                # Determine format label: IMAX 70mm takes priority over plain 70mm
+                is_imax70 = "imax70mm" in s["attributeCodes"]
                 showtime_details.append({
                     "time": fmt_time(s["datetimeUtc"], theater["tz"]),
+                    "format": "IMAX 70mm" if is_imax70 else "70mm",
+                    "isImax70": is_imax70,
                     "seatsAvailable": avail_seats,
                     "seatsTotal": total_seats,
                 })
 
+            has_imax70 = any(d["isImax70"] for d in showtime_details)
             results[theater["id"]] = {
                 "available": len(available) > 0,
                 "showtimes": [d["time"] for d in showtime_details],
                 "showtimeDetails": showtime_details,
+                "hasImax70": has_imax70,
                 "allShowtimes": len(shows),
                 "soldOut": len(shows) > 0 and len(available) == 0,
                 "has70mm": len(shows) > 0,

@@ -79,46 +79,60 @@ function TheaterCard({ theater, status, date }) {
         </span>
       </div>
 
-      {/* Format badge */}
+      {/* Format badges */}
       {has70mm && (
-        <div style={{
-          display: 'inline-block',
-          padding: '3px 8px',
-          borderRadius: 4,
-          background: '#292524',
-          border: '1px solid #44403c',
-          fontSize: 11,
-          color: '#d97706',
-          marginBottom: 12,
-        }}>
-          IMAX 70mm
+        <div style={{ display: 'flex', gap: 6, marginBottom: 12 }}>
+          {status.hasImax70 && (
+            <span style={{
+              padding: '3px 8px', borderRadius: 4,
+              background: '#1e3a5f', border: '1px solid #3b82f6',
+              fontSize: 11, color: '#93c5fd',
+            }}>
+              IMAX 70mm
+            </span>
+          )}
+          <span style={{
+            padding: '3px 8px', borderRadius: 4,
+            background: '#292524', border: '1px solid #44403c',
+            fontSize: 11, color: '#d97706',
+          }}>
+            70mm
+          </span>
         </div>
       )}
 
       {/* Showtimes */}
       {(status.showtimeDetails?.length > 0 || showtimes.length > 0) && (
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12 }}>
-          {(status.showtimeDetails || showtimes.map(t => ({ time: t }))).map((d, i) => (
-            <div key={i} style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              padding: '6px 12px',
-              borderRadius: 6,
-              background: available ? '#14532d' : '#292524',
-              border: `1px solid ${available ? '#166534' : '#44403c'}`,
-              color: available ? '#4ade80' : '#a3a3a3',
-              fontSize: 13,
-              fontWeight: 500,
-            }}>
-              <span>{d.time}</span>
-              {d.seatsAvailable != null && (
-                <span style={{ fontSize: 10, opacity: 0.85, marginTop: 2 }}>
-                  {d.seatsAvailable} of {d.seatsTotal} seats
-                </span>
-              )}
-            </div>
-          ))}
+          {(status.showtimeDetails || showtimes.map(t => ({ time: t }))).map((d, i) => {
+            const isImax = d.isImax70
+            return (
+              <div key={i} style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                padding: '6px 12px',
+                borderRadius: 6,
+                background: isImax ? '#1e3a5f' : (available ? '#14532d' : '#292524'),
+                border: `1px solid ${isImax ? '#3b82f6' : (available ? '#166534' : '#44403c')}`,
+                color: isImax ? '#93c5fd' : (available ? '#4ade80' : '#a3a3a3'),
+                fontSize: 13,
+                fontWeight: 500,
+              }}>
+                <span>{d.time}</span>
+                {d.format && (
+                  <span style={{ fontSize: 9, opacity: 0.9, marginTop: 2, letterSpacing: 0.3 }}>
+                    {d.format}
+                  </span>
+                )}
+                {d.seatsAvailable != null && (
+                  <span style={{ fontSize: 10, opacity: 0.85, marginTop: 2 }}>
+                    {d.seatsAvailable} of {d.seatsTotal} seats
+                  </span>
+                )}
+              </div>
+            )
+          })}
         </div>
       )}
 

@@ -20,7 +20,7 @@ function Header() {
         The Odyssey
       </h1>
       <p style={{ color: '#737373', margin: '8px 0 0', fontSize: 15 }}>
-        IMAX 70mm Showtime Tracker
+        70mm &amp; IMAX 70mm Showtime Tracker
       </p>
       <p style={{ color: '#525252', margin: '4px 0 0', fontSize: 12 }}>
         Christopher Nolan &middot; 2025 &middot; Find available 70mm screenings near you
