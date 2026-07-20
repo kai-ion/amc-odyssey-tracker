@@ -59,12 +59,25 @@ async def check_theater(page, theater, date_str):
         # Look for showtime buttons/links
         showtimes = []
 
-        # Pattern 1: showtime elements
+        # Pattern 1: showtime elements (exclude wheelchair/accessibility-only)
         showtime_elements = await page.query_selector_all("[data-showtime-id], .Showtime, .ShowtimeButton, .showtime-btn")
         for el in showtime_elements:
+            # Skip if the showtime is marked as wheelchair/companion only
+            classes = await el.get_attribute("class") or ""
+            aria_label = await el.get_attribute("aria-label") or ""
+            parent = await el.evaluate_handle("el => el.closest('.ShowtimeButtons, .showtime-container')")
+            parent_text = await parent.inner_text() if parent else ""
+
             text = await el.text_content()
-            if text:
-                showtimes.append(text.strip())
+            if not text:
+                continue
+
+            # Skip accessibility-only indicators
+            lower_context = (classes + aria_label + parent_text).lower()
+            if any(kw in lower_context for kw in ["wheelchair", "companion", "accessible seat only", "ada only"]):
+                continue
+
+            showtimes.append(text.strip())
 
         # Pattern 2: look for time patterns in the page
         time_pattern = re.findall(r'\b(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))\b', content)
@@ -74,9 +87,24 @@ async def check_theater(page, theater, date_str):
         # Check for "70mm" or "IMAX 70mm" format indicators
         has_70mm = "70mm" in content.lower() or "imax 70" in content.lower()
 
-        # Check for "sold out" or "no showtimes"
-        sold_out = "sold out" in content.lower()
+        # Check if only wheelchair/accessible seats remain (not truly "available")
+        wheelchair_only = ("wheelchair" in content.lower() or "accessible seats only" in content.lower()) and not showtimes
+        sold_out = "sold out" in content.lower() or wheelchair_only
         no_showtimes = "no showtimes" in content.lower() or "not available" in content.lower()
+
+        # Additional check: if the page mentions "only wheelchair" or "companion seats"
+        # remaining, treat as sold out for standard seats
+        if not sold_out and showtimes:
+            # Check if the available seats are ONLY accessible/companion
+            seat_info = await page.query_selector_all(".seat-type, .SeatLegend, [class*='accessible'], [class*='wheelchair']")
+            accessible_mentions = sum(1 for _ in seat_info)
+            if accessible_mentions > 0:
+                # Look for explicit "X seats remaining" that indicates only accessible
+                remaining_text = re.findall(r'(\d+)\s*(?:wheelchair|accessible|companion)\s*(?:seats?|spots?)\s*(?:remaining|available|left)', content.lower())
+                standard_remaining = re.findall(r'(\d+)\s*(?:standard|regular|reserved)?\s*seats?\s*(?:remaining|available|left)', content.lower())
+                if remaining_text and not standard_remaining:
+                    sold_out = True
+                    showtimes = []
 
         return {
             "theater": theater["name"],
