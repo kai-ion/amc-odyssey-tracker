@@ -123,22 +123,11 @@ function App() {
             ))}
           </div>
 
-          <button
-            onClick={checkAvailability}
-            disabled={loading}
-            style={{
-              padding: '8px 20px',
-              borderRadius: 6,
-              border: '1px solid #d97706',
-              background: 'transparent',
-              color: '#d97706',
-              cursor: loading ? 'wait' : 'pointer',
-              fontSize: 13,
-              marginLeft: 'auto',
-            }}
-          >
-            {loading ? 'Checking...' : 'Refresh'}
-          </button>
+          {loading && (
+            <span style={{ marginLeft: 'auto', fontSize: 13, color: '#d97706' }}>
+              ⟳ Checking availability...
+            </span>
+          )}
         </div>
 
         {/* Theater Picker Toggle */}
