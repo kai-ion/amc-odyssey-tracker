@@ -20,7 +20,10 @@ const THEATERS = [
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(getToday())
-  const [selectedTheaters, setSelectedTheaters] = useState(new Set(THEATERS.map(t => t.id)))
+  const [selectedTheaters, setSelectedTheaters] = useState(() => {
+    const saved = localStorage.getItem('selectedTheaters')
+    return saved ? new Set(JSON.parse(saved)) : new Set(THEATERS.map(t => t.id))
+  })
   const [availability, setAvailability] = useState({})
   const [loading, setLoading] = useState(false)
   const [lastChecked, setLastChecked] = useState(null)
@@ -64,17 +67,20 @@ function App() {
     checkAvailability()
   }, [selectedDate])
 
-  const toggleTheater = (id) => {
-    setSelectedTheaters(prev => {
-      const next = new Set(prev)
-      if (next.has(id)) next.delete(id)
-      else next.add(id)
-      return next
-    })
+  const updateSelectedTheaters = (next) => {
+    setSelectedTheaters(next)
+    localStorage.setItem('selectedTheaters', JSON.stringify([...next]))
   }
 
-  const selectAllTheaters = () => setSelectedTheaters(new Set(THEATERS.map(t => t.id)))
-  const clearAllTheaters = () => setSelectedTheaters(new Set())
+  const toggleTheater = (id) => {
+    const next = new Set(selectedTheaters)
+    if (next.has(id)) next.delete(id)
+    else next.add(id)
+    updateSelectedTheaters(next)
+  }
+
+  const selectAllTheaters = () => updateSelectedTheaters(new Set(THEATERS.map(t => t.id)))
+  const clearAllTheaters = () => updateSelectedTheaters(new Set())
 
   const filteredTheaters = THEATERS.filter(t => {
     if (!selectedTheaters.has(t.id)) return false
