@@ -20,10 +20,12 @@ const THEATERS = [
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(getToday())
+  const [selectedTheaters, setSelectedTheaters] = useState(new Set(THEATERS.map(t => t.id)))
   const [availability, setAvailability] = useState({})
   const [loading, setLoading] = useState(false)
   const [lastChecked, setLastChecked] = useState(null)
   const [filter, setFilter] = useState('all') // all, available, soldout
+  const [showTheaterPicker, setShowTheaterPicker] = useState(false)
 
   function getToday() {
     return new Date().toISOString().split('T')[0]
@@ -62,7 +64,20 @@ function App() {
     checkAvailability()
   }, [selectedDate])
 
+  const toggleTheater = (id) => {
+    setSelectedTheaters(prev => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
+  const selectAllTheaters = () => setSelectedTheaters(new Set(THEATERS.map(t => t.id)))
+  const clearAllTheaters = () => setSelectedTheaters(new Set())
+
   const filteredTheaters = THEATERS.filter(t => {
+    if (!selectedTheaters.has(t.id)) return false
     if (filter === 'all') return true
     const status = availability[t.id]
     if (filter === 'available') return status?.available
@@ -70,7 +85,7 @@ function App() {
     return true
   })
 
-  const availableCount = THEATERS.filter(t => availability[t.id]?.available).length
+  const availableCount = THEATERS.filter(t => selectedTheaters.has(t.id) && availability[t.id]?.available).length
 
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0a', color: '#e5e5e5', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
@@ -120,9 +135,75 @@ function App() {
           </button>
         </div>
 
+        {/* Theater Picker Toggle */}
+        <div style={{ marginBottom: 16 }}>
+          <button
+            onClick={() => setShowTheaterPicker(!showTheaterPicker)}
+            style={{
+              padding: '8px 16px',
+              borderRadius: 6,
+              border: '1px solid #404040',
+              background: '#1a1a1a',
+              color: '#a3a3a3',
+              cursor: 'pointer',
+              fontSize: 13,
+            }}
+          >
+            {showTheaterPicker ? '▼' : '▶'} Select Theaters ({selectedTheaters.size}/{THEATERS.length})
+          </button>
+
+          {showTheaterPicker && (
+            <div style={{
+              marginTop: 12,
+              padding: 16,
+              background: '#171717',
+              border: '1px solid #333',
+              borderRadius: 10,
+            }}>
+              <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+                <button onClick={selectAllTheaters} style={{ padding: '4px 12px', borderRadius: 4, border: '1px solid #525252', background: 'transparent', color: '#a3a3a3', cursor: 'pointer', fontSize: 12 }}>
+                  Select All
+                </button>
+                <button onClick={clearAllTheaters} style={{ padding: '4px 12px', borderRadius: 4, border: '1px solid #525252', background: 'transparent', color: '#a3a3a3', cursor: 'pointer', fontSize: 12 }}>
+                  Clear All
+                </button>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 8 }}>
+                {THEATERS.map(t => (
+                  <label
+                    key={t.id}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      padding: '8px 12px',
+                      borderRadius: 6,
+                      background: selectedTheaters.has(t.id) ? '#292524' : 'transparent',
+                      border: `1px solid ${selectedTheaters.has(t.id) ? '#d97706' : '#333'}`,
+                      cursor: 'pointer',
+                      transition: 'all 0.15s',
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={selectedTheaters.has(t.id)}
+                      onChange={() => toggleTheater(t.id)}
+                      style={{ accentColor: '#d97706' }}
+                    />
+                    <div>
+                      <div style={{ fontSize: 13, color: '#e5e5e5' }}>{t.name}</div>
+                      <div style={{ fontSize: 11, color: '#737373' }}>{t.location}</div>
+                    </div>
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
         {/* Status bar */}
         <div style={{ display: 'flex', gap: 24, marginBottom: 24, fontSize: 13, color: '#737373' }}>
-          <span>{availableCount} of {THEATERS.length} theaters available</span>
+          <span>{availableCount} of {selectedTheaters.size} theaters available</span>
           {lastChecked && <span>Last checked: {lastChecked}</span>}
         </div>
 
