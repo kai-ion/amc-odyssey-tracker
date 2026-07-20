@@ -31,7 +31,7 @@ function TheaterCard({ theater, status, date }) {
 
   if (notChecked) {
     borderColor = '#3f3f46'
-    statusText = 'Not yet posted'
+    statusText = 'Unable to check'
     statusColor = '#71717a'
   } else if (available) {
     borderColor = '#16a34a'

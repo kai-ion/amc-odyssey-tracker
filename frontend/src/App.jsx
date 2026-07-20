@@ -202,6 +202,20 @@ function App() {
           {lastChecked && <span>Last checked: {lastChecked}</span>}
         </div>
 
+        {lastChecked && lastChecked.includes('unavailable') && (
+          <div style={{
+            padding: '12px 16px',
+            marginBottom: 20,
+            borderRadius: 8,
+            background: '#1c1917',
+            border: '1px solid #44403c',
+            fontSize: 13,
+            color: '#a8a29e',
+          }}>
+            Could not reach AMC servers. Make sure the backend is running (<code>python server.py</code>) and try again.
+          </div>
+        )}
+
         {/* Theater Grid */}
         <TheaterGrid
           theaters={filteredTheaters}
