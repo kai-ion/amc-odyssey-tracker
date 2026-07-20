@@ -6,16 +6,16 @@ import Header from './components/Header'
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
 const THEATERS = [
-  { id: "1752", name: "AMC Lincoln Square 13", location: "New York, NY", state: "NY" },
-  { id: "2254", name: "AMC Metreon 16", location: "San Francisco, CA", state: "CA" },
-  { id: "1004", name: "AMC Universal CityWalk", location: "Universal City, CA", state: "CA" },
-  { id: "2291", name: "AMC Century City 15", location: "Los Angeles, CA", state: "CA" },
-  { id: "2136", name: "AMC King of Prussia 16", location: "King of Prussia, PA", state: "PA" },
-  { id: "3174", name: "AMC Navy Pier IMAX", location: "Chicago, IL", state: "IL" },
-  { id: "2295", name: "AMC NorthPark 15", location: "Dallas, TX", state: "TX" },
-  { id: "2304", name: "AMC Aventura 24", location: "Aventura, FL", state: "FL" },
-  { id: "2306", name: "AMC Tysons Corner 16", location: "McLean, VA", state: "VA" },
-  { id: "2070", name: "AMC Garden State 16", location: "Paramus, NJ", state: "NJ" },
+  { id: "amc-lincoln-square-13", name: "AMC Lincoln Square 13", location: "New York, NY", state: "NY" },
+  { id: "amc-metreon-16", name: "AMC Metreon 16", location: "San Francisco, CA", state: "CA" },
+  { id: "amc-universal-citywalk-19", name: "AMC Universal CityWalk", location: "Universal City, CA", state: "CA" },
+  { id: "amc-century-city-15", name: "AMC Century City 15", location: "Los Angeles, CA", state: "CA" },
+  { id: "amc-king-of-prussia-16", name: "AMC King of Prussia 16", location: "King of Prussia, PA", state: "PA" },
+  { id: "amc-navy-pier-imax", name: "AMC Navy Pier IMAX", location: "Chicago, IL", state: "IL" },
+  { id: "amc-northpark-15", name: "AMC NorthPark 15", location: "Dallas, TX", state: "TX" },
+  { id: "amc-aventura-24", name: "AMC Aventura 24", location: "Aventura, FL", state: "FL" },
+  { id: "amc-tysons-corner-16", name: "AMC Tysons Corner 16", location: "McLean, VA", state: "VA" },
+  { id: "amc-garden-state-16", name: "AMC Garden State 16", location: "Paramus, NJ", state: "NJ" },
 ]
 
 function App() {
@@ -48,17 +48,8 @@ function App() {
       setAvailability(data.results || {})
       setLastChecked(new Date().toLocaleTimeString())
     } catch (err) {
-      // Backend down or timeout — show status as "not yet available"
       const mock = {}
-      THEATERS.forEach(t => {
-        mock[t.id] = {
-          available: false,
-          showtimes: [],
-          soldOut: false,
-          has70mm: true,
-          notChecked: true,
-        }
-      })
+      THEATERS.forEach(t => { mock[t.id] = { notChecked: true } })
       setAvailability(mock)
       setLastChecked(new Date().toLocaleTimeString() + ' (backend unavailable)')
     }

@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 """
-Backend API server for AMC Odyssey Tracker.
-Wraps the Playwright checker and serves results to the React frontend.
+Backend API for AMC Odyssey 70mm Tracker.
+
+Uses the AMC GraphQL API (via curl_cffi Chrome impersonation) to fetch
+real showtimes — no browser, no Cloudflare blocks.
 """
 
-import asyncio
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+
+from amc_graphql import get_showtimes, get_selectable_dates
 
 app = Flask(__name__)
 CORS(app)
@@ -17,55 +20,110 @@ CORS(app)
 DATA_DIR = Path(__file__).parent / "data"
 DATA_DIR.mkdir(exist_ok=True)
 
+MOVIE_SLUG = "the-odyssey-76238"
+
+# Theater slug mapping (slug is what the GraphQL API needs)
+THEATERS = [
+    {"id": "amc-lincoln-square-13", "name": "AMC Lincoln Square 13", "location": "New York, NY"},
+    {"id": "amc-metreon-16", "name": "AMC Metreon 16", "location": "San Francisco, CA"},
+    {"id": "amc-universal-citywalk-19", "name": "AMC Universal CityWalk", "location": "Universal City, CA"},
+    {"id": "amc-century-city-15", "name": "AMC Century City 15", "location": "Los Angeles, CA"},
+    {"id": "amc-king-of-prussia-16", "name": "AMC King of Prussia 16", "location": "King of Prussia, PA"},
+    {"id": "amc-navy-pier-imax", "name": "AMC Navy Pier IMAX", "location": "Chicago, IL"},
+    {"id": "amc-northpark-15", "name": "AMC NorthPark 15", "location": "Dallas, TX"},
+    {"id": "amc-aventura-24", "name": "AMC Aventura 24", "location": "Aventura, FL"},
+    {"id": "amc-tysons-corner-16", "name": "AMC Tysons Corner 16", "location": "McLean, VA"},
+    {"id": "amc-garden-state-16", "name": "AMC Garden State 16", "location": "Paramus, NJ"},
+]
+
+FORMAT_FILTER = {"imax70mm"}  # Only true IMAX 70mm
+
+
+@app.route("/theaters")
+def list_theaters():
+    return jsonify({"theaters": THEATERS})
+
 
 @app.route("/check")
 def check_availability():
     """Check all theaters for a given date."""
     date = request.args.get("date", datetime.now().strftime("%Y-%m-%d"))
 
-    # Check if we have recent cached results (< 10 min old)
     cache_file = DATA_DIR / f"cache_{date}.json"
     if cache_file.exists():
-        cache_age = datetime.now().timestamp() - cache_file.stat().st_mtime
-        if cache_age < 600:  # 10 minutes
+        age = datetime.now().timestamp() - cache_file.stat().st_mtime
+        if age < 600:  # 10 min cache
             with open(cache_file) as f:
                 return jsonify(json.load(f))
 
-    # Check session validity
-    from amc_session import is_session_valid
-    if not is_session_valid():
-        return jsonify({"error": "Session expired. Run: python amc_session.py --init", "results": {}})
+    results = {}
+    for theater in THEATERS:
+        try:
+            shows = get_showtimes(theater["id"], date, movie_slug=MOVIE_SLUG, formats=FORMAT_FILTER)
+            available = [s for s in shows if s["available"]]
+            results[theater["id"]] = {
+                "available": len(available) > 0,
+                "showtimes": [fmt_time(s["datetimeUtc"]) for s in available],
+                "allShowtimes": len(shows),
+                "soldOut": len(shows) > 0 and len(available) == 0,
+                "has70mm": len(shows) > 0,
+            }
+        except Exception as e:
+            results[theater["id"]] = {"available": False, "error": str(e)[:80]}
 
-    # Run the checker
-    from checker import IMAX_70MM_THEATERS
-    results = asyncio.run(run_check(date))
-
-    # Cache results
     output = {"date": date, "checked_at": datetime.now().isoformat(), "results": results}
     with open(cache_file, "w") as f:
         json.dump(output, f)
-
     return jsonify(output)
 
 
-@app.route("/theaters")
-def list_theaters():
-    """Return list of known 70mm theaters."""
-    from checker import IMAX_70MM_THEATERS
-    return jsonify({"theaters": IMAX_70MM_THEATERS})
-
-
 @app.route("/find-next")
-def find_next_available():
-    """Scan dates until we find one with available tickets."""
-    theater_ids = request.args.get("theaters", "").split(",")
-    days = int(request.args.get("days", 30))
+def find_next():
+    """Find the next date with available IMAX 70mm tickets at selected theaters."""
+    theater_ids = [t for t in request.args.get("theaters", "").split(",") if t]
+    if not theater_ids:
+        theater_ids = [t["id"] for t in THEATERS]
 
-    from checker import IMAX_70MM_THEATERS
-    theaters = [t for t in IMAX_70MM_THEATERS if t["id"] in theater_ids] if theater_ids[0] else IMAX_70MM_THEATERS
+    # Get dates that have any showings
+    try:
+        dates = get_selectable_dates(MOVIE_SLUG)
+    except Exception:
+        today = datetime.now()
+        dates = [(today + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(30)]
 
-    result = asyncio.run(run_find_next(theaters, days))
-    return jsonify(result)
+    theater_map = {t["id"]: t for t in THEATERS}
+
+    for date in dates:
+        for tid in theater_ids:
+            if tid not in theater_map:
+                continue
+            try:
+                shows = get_showtimes(tid, date, movie_slug=MOVIE_SLUG, formats=FORMAT_FILTER)
+                available = [s for s in shows if s["available"]]
+                if available:
+                    t = theater_map[tid]
+                    return jsonify({
+                        "found": True,
+                        "theater": t["name"],
+                        "location": t["location"],
+                        "theaterId": tid,
+                        "date": date,
+                        "showtimes": [fmt_time(s["datetimeUtc"]) for s in available],
+                        "url": f"https://www.amctheatres.com/movies/{MOVIE_SLUG}/showtimes/all/{date}/{tid}/all",
+                    })
+            except Exception:
+                continue
+
+    return jsonify({"found": False, "message": "No available IMAX 70mm showings found at your selected theaters."})
+
+
+@app.route("/dates")
+def dates():
+    """Return dates that have showings for the movie."""
+    try:
+        return jsonify({"dates": get_selectable_dates(MOVIE_SLUG)})
+    except Exception as e:
+        return jsonify({"dates": [], "error": str(e)})
 
 
 @app.route("/health")
@@ -73,94 +131,15 @@ def health():
     return jsonify({"status": "ok", "time": datetime.now().isoformat()})
 
 
-async def run_check(date_str):
-    """Run checks using saved AMC session cookies."""
-    from amc_session import get_amc_page
-    from checker import IMAX_70MM_THEATERS
-    import re
-
-    results = {}
-
-    for theater in IMAX_70MM_THEATERS:
-        url = f"https://www.amctheatres.com/movies/the-odyssey-76238/showtimes/the-odyssey-76238/{date_str}/{theater['id']}/all"
-        try:
-            content, title = await get_amc_page(url)
-
-            showtimes = re.findall(r'\b(\d{1,2}:\d{2}\s*(?:AM|PM))\b', content)
-            has_70mm = "70mm" in content.lower()
-            sold_out = "sold out" in content.lower()
-            wheelchair_only = "wheelchair" in content.lower() and not showtimes
-
-            results[theater["id"]] = {
-                "available": len(showtimes) > 0 and not sold_out and not wheelchair_only,
-                "showtimes": list(set(showtimes))[:6],
-                "soldOut": sold_out or wheelchair_only,
-                "has70mm": has_70mm,
-            }
-        except RuntimeError as e:
-            results[theater["id"]] = {"available": False, "error": str(e)}
-        except Exception as e:
-            results[theater["id"]] = {"available": False, "error": str(e)[:50]}
-
-    return results
-
-
-async def run_find_next(theaters, max_days):
-    """Scan dates across theaters — check the AMC listing page which shows all dates at once."""
-    from playwright.async_api import async_playwright
-    from datetime import timedelta
-    import re
-
-    results = {"found": False, "date": None, "theater": None, "showtimes": []}
-
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(
-            headless=True,
-            args=["--disable-blink-features=AutomationControlled"],
-        )
-        context = await browser.new_context(
-            user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            viewport={"width": 1440, "height": 900},
-        )
-        await context.add_init_script("Object.defineProperty(navigator, 'webdriver', { get: () => undefined });")
-        page = await context.new_page()
-
-        for theater in theaters:
-            # AMC's movie page for a theater shows all available dates
-            url = f"https://www.amctheatres.com/movies/the-odyssey-76238/showtimes/the-odyssey-76238/{datetime.now().strftime('%Y-%m-%d')}/{theater['id']}/all"
-            try:
-                await page.goto(url, wait_until="domcontentloaded", timeout=20000)
-                await page.wait_for_timeout(3000)
-
-                content = await page.content()
-
-                # Look for any available showtime on ANY date shown on the page
-                # AMC pages often list multiple dates with showtimes
-                has_showtimes = bool(re.findall(r'\b\d{1,2}:\d{2}\s*(?:AM|PM)\b', content))
-                not_sold_out = "sold out" not in content.lower()
-                has_70mm = "70mm" in content.lower()
-
-                if has_showtimes and not_sold_out and has_70mm:
-                    times = re.findall(r'\b(\d{1,2}:\d{2}\s*(?:AM|PM))\b', content)
-                    results = {
-                        "found": True,
-                        "theater": theater["name"],
-                        "location": theater["location"],
-                        "theaterId": theater["id"],
-                        "showtimes": list(set(times))[:5],
-                        "url": url,
-                    }
-                    await browser.close()
-                    return results
-
-            except Exception as e:
-                continue
-
-            await page.wait_for_timeout(1000)
-
-        await browser.close()
-
-    return results
+def fmt_time(utc_str):
+    """Convert UTC datetime string to a readable local-ish time (HH:MM)."""
+    if not utc_str:
+        return "?"
+    try:
+        dt = datetime.fromisoformat(utc_str.replace("Z", "+00:00"))
+        return dt.strftime("%-I:%M %p")
+    except Exception:
+        return utc_str[11:16] if len(utc_str) > 16 else utc_str
 
 
 if __name__ == "__main__":
