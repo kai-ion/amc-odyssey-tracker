@@ -31,8 +31,13 @@ def check_availability():
             with open(cache_file) as f:
                 return jsonify(json.load(f))
 
+    # Check session validity
+    from amc_session import is_session_valid
+    if not is_session_valid():
+        return jsonify({"error": "Session expired. Run: python amc_session.py --init", "results": {}})
+
     # Run the checker
-    from checker import check_theater, IMAX_70MM_THEATERS
+    from checker import IMAX_70MM_THEATERS
     results = asyncio.run(run_check(date))
 
     # Cache results
@@ -69,47 +74,33 @@ def health():
 
 
 async def run_check(date_str):
-    """Run Playwright checks for all theaters on a given date."""
-    from playwright.async_api import async_playwright
-    from checker import check_theater, IMAX_70MM_THEATERS
+    """Run checks using saved AMC session cookies."""
+    from amc_session import get_amc_page
+    from checker import IMAX_70MM_THEATERS
+    import re
 
     results = {}
 
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(
-            headless=True,
-            args=["--disable-blink-features=AutomationControlled"],
-        )
-        context = await browser.new_context(
-            user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            viewport={"width": 1440, "height": 900},
-            locale="en-US",
-        )
-        # Hide webdriver detection
-        await context.add_init_script("""
-            Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
-        """)
-        page = await context.new_page()
+    for theater in IMAX_70MM_THEATERS:
+        url = f"https://www.amctheatres.com/movies/the-odyssey-2025/showtimes/the-odyssey-2025/{date_str}/{theater['id']}/all"
+        try:
+            content, title = await get_amc_page(url)
 
-        for theater in IMAX_70MM_THEATERS:
-            try:
-                result = await asyncio.wait_for(
-                    check_theater(page, theater, date_str),
-                    timeout=15
-                )
-            except asyncio.TimeoutError:
-                result = {"available": False, "error": "timeout"}
+            showtimes = re.findall(r'\b(\d{1,2}:\d{2}\s*(?:AM|PM))\b', content)
+            has_70mm = "70mm" in content.lower()
+            sold_out = "sold out" in content.lower()
+            wheelchair_only = "wheelchair" in content.lower() and not showtimes
 
             results[theater["id"]] = {
-                "available": result.get("available", False),
-                "showtimes": result.get("showtimes", []),
-                "soldOut": result.get("sold_out", False),
-                "has70mm": result.get("has_70mm", False),
-                "error": result.get("error"),
+                "available": len(showtimes) > 0 and not sold_out and not wheelchair_only,
+                "showtimes": list(set(showtimes))[:6],
+                "soldOut": sold_out or wheelchair_only,
+                "has70mm": has_70mm,
             }
-            await page.wait_for_timeout(1000)
-
-        await browser.close()
+        except RuntimeError as e:
+            results[theater["id"]] = {"available": False, "error": str(e)}
+        except Exception as e:
+            results[theater["id"]] = {"available": False, "error": str(e)[:50]}
 
     return results
 
