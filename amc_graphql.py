@@ -115,6 +115,49 @@ def get_showtimes(theatre_slug, date_str, movie_slug=None, formats=None):
     return showtimes
 
 
+SEAT_QUERY = """
+query($sid: Int!) {
+  viewer {
+    showtime(id: $sid) {
+      showtimeId
+      status
+      seatingLayout {
+        seats { available shouldDisplay }
+      }
+    }
+  }
+}
+"""
+
+
+def get_seat_count(showtime_id):
+    """
+    Return (available_seats, total_seats) for a showtime, or (None, None) if
+    unavailable/rate-limited. Only meaningful for reserved-seating showtimes.
+    """
+    try:
+        resp = requests.post(
+            GRAPH_URL,
+            json={"query": SEAT_QUERY, "variables": {"sid": int(showtime_id)}},
+            headers=HEADERS,
+            impersonate="chrome",
+            timeout=20,
+        )
+        if resp.status_code == 429:
+            return None, None
+        data = resp.json()
+        st = ((data.get("data") or {}).get("viewer") or {}).get("showtime") or {}
+        layout = st.get("seatingLayout") or {}
+        seats = layout.get("seats") or []
+        if not seats:
+            return None, None
+        available = sum(1 for s in seats if s.get("available"))
+        total = sum(1 for s in seats if s.get("shouldDisplay"))
+        return available, total
+    except Exception:
+        return None, None
+
+
 def get_selectable_dates(movie_slug):
     """Get the list of dates that have any showings for a movie."""
     query = "{ viewer { selectableDates(movieSlug: \"%s\") { dates selected } } }" % movie_slug

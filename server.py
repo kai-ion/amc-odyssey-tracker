@@ -12,7 +12,8 @@ from pathlib import Path
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-from amc_graphql import get_showtimes, get_selectable_dates
+import time
+from amc_graphql import get_showtimes, get_selectable_dates, get_seat_count
 
 app = Flask(__name__)
 CORS(app)
@@ -62,9 +63,22 @@ def check_availability():
         try:
             shows = get_showtimes(theater["id"], date, movie_slug=MOVIE_SLUG, formats=FORMAT_FILTER)
             available = [s for s in shows if s["available"]]
+
+            # Fetch seat counts for available showtimes (with small delay to avoid rate limits)
+            showtime_details = []
+            for s in available:
+                avail_seats, total_seats = get_seat_count(s["showtimeId"])
+                time.sleep(0.3)
+                showtime_details.append({
+                    "time": fmt_time(s["datetimeUtc"], theater["tz"]),
+                    "seatsAvailable": avail_seats,
+                    "seatsTotal": total_seats,
+                })
+
             results[theater["id"]] = {
                 "available": len(available) > 0,
-                "showtimes": [fmt_time(s["datetimeUtc"], theater["tz"]) for s in available],
+                "showtimes": [d["time"] for d in showtime_details],
+                "showtimeDetails": showtime_details,
                 "allShowtimes": len(shows),
                 "soldOut": len(shows) > 0 and len(available) == 0,
                 "has70mm": len(shows) > 0,

@@ -96,10 +96,13 @@ function TheaterCard({ theater, status, date }) {
       )}
 
       {/* Showtimes */}
-      {showtimes.length > 0 && (
+      {(status.showtimeDetails?.length > 0 || showtimes.length > 0) && (
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12 }}>
-          {showtimes.map((time, i) => (
-            <span key={i} style={{
+          {(status.showtimeDetails || showtimes.map(t => ({ time: t }))).map((d, i) => (
+            <div key={i} style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
               padding: '6px 12px',
               borderRadius: 6,
               background: available ? '#14532d' : '#292524',
@@ -108,8 +111,13 @@ function TheaterCard({ theater, status, date }) {
               fontSize: 13,
               fontWeight: 500,
             }}>
-              {time}
-            </span>
+              <span>{d.time}</span>
+              {d.seatsAvailable != null && (
+                <span style={{ fontSize: 10, opacity: 0.85, marginTop: 2 }}>
+                  {d.seatsAvailable} of {d.seatsTotal} seats
+                </span>
+              )}
+            </div>
           ))}
         </div>
       )}
