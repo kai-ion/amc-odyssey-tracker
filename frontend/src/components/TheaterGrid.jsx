@@ -47,7 +47,7 @@ function TheaterCard({ theater, status, date }) {
     statusColor = '#737373'
   }
 
-  const bookingUrl = `https://www.amctheatres.com/movies/the-odyssey-2025/showtimes/the-odyssey-2025/${date}/${theater.id}/all`
+  const bookingUrl = `https://www.amctheatres.com/movies/the-odyssey-76238/showtimes/the-odyssey-76238/${date}/${theater.id}/all`
 
   return (
     <div style={{

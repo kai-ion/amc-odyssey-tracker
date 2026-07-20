@@ -82,7 +82,7 @@ async def run_check(date_str):
     results = {}
 
     for theater in IMAX_70MM_THEATERS:
-        url = f"https://www.amctheatres.com/movies/the-odyssey-2025/showtimes/the-odyssey-2025/{date_str}/{theater['id']}/all"
+        url = f"https://www.amctheatres.com/movies/the-odyssey-76238/showtimes/the-odyssey-76238/{date_str}/{theater['id']}/all"
         try:
             content, title = await get_amc_page(url)
 
@@ -127,7 +127,7 @@ async def run_find_next(theaters, max_days):
 
         for theater in theaters:
             # AMC's movie page for a theater shows all available dates
-            url = f"https://www.amctheatres.com/movies/the-odyssey-2025/showtimes/the-odyssey-2025/{datetime.now().strftime('%Y-%m-%d')}/{theater['id']}/all"
+            url = f"https://www.amctheatres.com/movies/the-odyssey-76238/showtimes/the-odyssey-76238/{datetime.now().strftime('%Y-%m-%d')}/{theater['id']}/all"
             try:
                 await page.goto(url, wait_until="domcontentloaded", timeout=20000)
                 await page.wait_for_timeout(3000)

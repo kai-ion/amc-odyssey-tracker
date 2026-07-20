@@ -42,7 +42,7 @@ IMAX_70MM_THEATERS = [
     {"name": "AMC Garden State 16", "id": "2070", "location": "Paramus, NJ"},
 ]
 
-MOVIE_SLUG = "the-odyssey-2025"
+MOVIE_SLUG = "the-odyssey-76238"
 DATA_DIR = Path(__file__).parent / "data"
 
 
