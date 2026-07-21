@@ -5,17 +5,11 @@ import Header from './components/Header'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
+// Only 3 AMC theaters have true IMAX 70mm film projectors (per r-imax/imaxguide)
 const THEATERS = [
   { id: "amc-lincoln-square-13", name: "AMC Lincoln Square 13", location: "New York, NY", state: "NY" },
-  { id: "amc-metreon-16", name: "AMC Metreon 16", location: "San Francisco, CA", state: "CA" },
-  { id: "amc-universal-citywalk-19", name: "AMC Universal CityWalk", location: "Universal City, CA", state: "CA" },
-  { id: "amc-century-city-15", name: "AMC Century City 15", location: "Los Angeles, CA", state: "CA" },
-  { id: "amc-king-of-prussia-16", name: "AMC King of Prussia 16", location: "King of Prussia, PA", state: "PA" },
-  { id: "amc-navy-pier-imax", name: "AMC Navy Pier IMAX", location: "Chicago, IL", state: "IL" },
-  { id: "amc-northpark-15", name: "AMC NorthPark 15", location: "Dallas, TX", state: "TX" },
-  { id: "amc-aventura-24", name: "AMC Aventura 24", location: "Aventura, FL", state: "FL" },
-  { id: "amc-tysons-corner-16", name: "AMC Tysons Corner 16", location: "McLean, VA", state: "VA" },
-  { id: "amc-garden-state-16", name: "AMC Garden State 16", location: "Paramus, NJ", state: "NJ" },
+  { id: "amc-metreon-16", name: "AMC Metreon 16 & IMAX", location: "San Francisco, CA", state: "CA" },
+  { id: "amc-universal-citywalk-19", name: "Universal Cinema AMC at CityWalk", location: "Universal City, CA", state: "CA" },
 ]
 
 function App() {

@@ -13,7 +13,8 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 import time
-from amc_graphql import get_showtimes, get_selectable_dates, get_seat_count
+from amc_graphql import get_showtimes as amc_get_showtimes, get_selectable_dates, get_seat_count
+import fandango
 
 app = Flask(__name__)
 CORS(app)
@@ -23,20 +24,73 @@ DATA_DIR.mkdir(exist_ok=True)
 
 MOVIE_SLUG = "the-odyssey-76238"
 
-# Theater slug + IANA timezone (to convert UTC showtimes to local)
+# Only these 3 AMC theaters have true IMAX 70mm film projectors (per r-imax/imaxguide).
+# amcSlug -> AMC GraphQL fallback; fandangoTms -> Fandango primary source.
 THEATERS = [
-    {"id": "amc-lincoln-square-13", "name": "AMC Lincoln Square 13", "location": "New York, NY", "tz": "America/New_York"},
-    {"id": "amc-metreon-16", "name": "AMC Metreon 16", "location": "San Francisco, CA", "tz": "America/Los_Angeles"},
-    {"id": "amc-universal-citywalk-19", "name": "AMC Universal CityWalk", "location": "Universal City, CA", "tz": "America/Los_Angeles"},
-    {"id": "amc-century-city-15", "name": "AMC Century City 15", "location": "Los Angeles, CA", "tz": "America/Los_Angeles"},
-    {"id": "amc-king-of-prussia-16", "name": "AMC King of Prussia 16", "location": "King of Prussia, PA", "tz": "America/New_York"},
-    {"id": "amc-navy-pier-imax", "name": "AMC Navy Pier IMAX", "location": "Chicago, IL", "tz": "America/Chicago"},
-    {"id": "amc-northpark-15", "name": "AMC NorthPark 15", "location": "Dallas, TX", "tz": "America/Chicago"},
-    {"id": "amc-aventura-24", "name": "AMC Aventura 24", "location": "Aventura, FL", "tz": "America/New_York"},
-    {"id": "amc-tysons-corner-16", "name": "AMC Tysons Corner 16", "location": "McLean, VA", "tz": "America/New_York"},
-    {"id": "amc-garden-state-16", "name": "AMC Garden State 16", "location": "Paramus, NJ", "tz": "America/New_York"},
+    {"id": "amc-lincoln-square-13", "name": "AMC Lincoln Square 13", "location": "New York, NY",
+     "tz": "America/New_York", "fandangoTms": "AAEWU"},
+    {"id": "amc-metreon-16", "name": "AMC Metreon 16 & IMAX", "location": "San Francisco, CA",
+     "tz": "America/Los_Angeles", "fandangoTms": "AANEM"},
+    {"id": "amc-universal-citywalk-19", "name": "Universal Cinema AMC at CityWalk", "location": "Universal City, CA",
+     "tz": "America/Los_Angeles", "fandangoTms": "AAWKH"},
 ]
 TZ_BY_ID = {t["id"]: t["tz"] for t in THEATERS}
+
+
+def fetch_showtimes(theater, date_str):
+    """
+    Get 70mm showtimes for a theater on a date.
+    Tries Fandango first (no Cloudflare/rate limits), falls back to AMC GraphQL.
+    Returns (showtime_details list, source string).
+    """
+    # --- Primary: Fandango ---
+    if theater.get("fandangoTms"):
+        try:
+            shows = fandango.get_showtimes(theater["fandangoTms"], date_str)
+            if shows:
+                details = []
+                for s in shows:
+                    if not s["available"]:
+                        continue
+                    details.append({
+                        "time": normalize_ampm(s["time"]),
+                        "format": s["format"],
+                        "isImax70": s["isImax70"],
+                        "seatsAvailable": None,
+                        "seatsTotal": None,
+                    })
+                return details, "fandango"
+        except Exception:
+            pass
+
+    # --- Fallback: AMC GraphQL ---
+    try:
+        shows = amc_get_showtimes(theater["id"], date_str, movie_slug=MOVIE_SLUG,
+                                  formats={"imax70mm", "70mm"})
+        available = [s for s in shows if s["available"]]
+        details = []
+        for s in available:
+            is_imax70 = "imax70mm" in s["attributeCodes"]
+            details.append({
+                "time": fmt_time(s["datetimeUtc"], theater["tz"]),
+                "format": "IMAX 70mm" if is_imax70 else "70mm",
+                "isImax70": is_imax70,
+                "seatsAvailable": None,
+                "seatsTotal": None,
+            })
+        return details, "amc"
+    except Exception as e:
+        return None, f"error: {str(e)[:60]}"
+
+
+def normalize_ampm(t):
+    """Convert Fandango '10:00a'/'2:00p' to '10:00 AM'/'2:00 PM'."""
+    t = t.strip()
+    if t.endswith("a"):
+        return t[:-1] + " AM"
+    if t.endswith("p"):
+        return t[:-1] + " PM"
+    return t
 
 # Both premium 70mm formats — IMAX 70mm (premium large format) and standard 70mm
 FORMAT_FILTER = {"imax70mm", "70mm"}
@@ -61,37 +115,19 @@ def check_availability():
 
     results = {}
     for theater in THEATERS:
-        try:
-            shows = get_showtimes(theater["id"], date, movie_slug=MOVIE_SLUG, formats=FORMAT_FILTER)
-            available = [s for s in shows if s["available"]]
-
-            # Fetch seat counts for available showtimes (with small delay to avoid rate limits)
-            showtime_details = []
-            for s in available:
-                avail_seats, total_seats = get_seat_count(s["showtimeId"])
-                time.sleep(0.3)
-                # Determine format label: IMAX 70mm takes priority over plain 70mm
-                is_imax70 = "imax70mm" in s["attributeCodes"]
-                showtime_details.append({
-                    "time": fmt_time(s["datetimeUtc"], theater["tz"]),
-                    "format": "IMAX 70mm" if is_imax70 else "70mm",
-                    "isImax70": is_imax70,
-                    "seatsAvailable": avail_seats,
-                    "seatsTotal": total_seats,
-                })
-
-            has_imax70 = any(d["isImax70"] for d in showtime_details)
-            results[theater["id"]] = {
-                "available": len(available) > 0,
-                "showtimes": [d["time"] for d in showtime_details],
-                "showtimeDetails": showtime_details,
-                "hasImax70": has_imax70,
-                "allShowtimes": len(shows),
-                "soldOut": len(shows) > 0 and len(available) == 0,
-                "has70mm": len(shows) > 0,
-            }
-        except Exception as e:
-            results[theater["id"]] = {"available": False, "error": str(e)[:80]}
+        details, source = fetch_showtimes(theater, date)
+        if details is None:
+            results[theater["id"]] = {"available": False, "error": source}
+            continue
+        has_imax70 = any(d["isImax70"] for d in details)
+        results[theater["id"]] = {
+            "available": len(details) > 0,
+            "showtimes": [d["time"] for d in details],
+            "showtimeDetails": details,
+            "hasImax70": has_imax70,
+            "has70mm": True,
+            "source": source,
+        }
 
     output = {"date": date, "checked_at": datetime.now().isoformat(), "results": results}
     with open(cache_file, "w") as f:
@@ -119,25 +155,23 @@ def find_next():
         for tid in theater_ids:
             if tid not in theater_map:
                 continue
-            try:
-                shows = get_showtimes(tid, date, movie_slug=MOVIE_SLUG, formats=FORMAT_FILTER)
-                available = [s for s in shows if s["available"]]
-                if available:
-                    t = theater_map[tid]
-                    return jsonify({
-                        "found": True,
-                        "theater": t["name"],
-                        "location": t["location"],
-                        "theaterId": tid,
-                        "date": date,
-                        "dateDisplay": datetime.fromisoformat(date).strftime("%A, %B %-d, %Y"),
-                        "showtimes": [fmt_time(s["datetimeUtc"], t["tz"]) for s in available],
-                        "url": f"https://www.amctheatres.com/movies/{MOVIE_SLUG}/showtimes/all/{date}/{tid}/all",
-                    })
-            except Exception:
-                continue
+            t = theater_map[tid]
+            details, source = fetch_showtimes(t, date)
+            if details:
+                return jsonify({
+                    "found": True,
+                    "theater": t["name"],
+                    "location": t["location"],
+                    "theaterId": tid,
+                    "date": date,
+                    "dateDisplay": datetime.fromisoformat(date).strftime("%A, %B %-d, %Y"),
+                    "showtimes": [d["time"] for d in details],
+                    "showtimeDetails": details,
+                    "url": f"https://www.amctheatres.com/movies/{MOVIE_SLUG}/showtimes/all/{date}/{tid}/all",
+                })
+            time.sleep(0.2)
 
-    return jsonify({"found": False, "message": "No available IMAX 70mm showings found at your selected theaters."})
+    return jsonify({"found": False, "message": "No available 70mm showings found at your selected theaters."})
 
 
 @app.route("/dates")
