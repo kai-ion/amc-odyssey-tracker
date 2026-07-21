@@ -1,6 +1,9 @@
 .DS_Store
-data/
 __pycache__/
 node_modules/
 .env
-data/
+
+# Ignore all local data (cookies, cache, screenshots)...
+data/*
+# ...except the monitor state, which the Actions workflow commits each run.
+!data/monitor_state.json

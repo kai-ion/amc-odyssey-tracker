@@ -130,32 +130,48 @@ query($sid: Int!) {
 """
 
 
-def get_seat_count(showtime_id):
+def get_seat_count(showtime_id, retries=2, max_wait=35):
     """
     Return (available_seats, total_seats) for a showtime, or (None, None) if
-    unavailable/rate-limited. Only meaningful for reserved-seating showtimes.
+    unavailable. Only meaningful for reserved-seating showtimes.
+
+    The seat endpoint is aggressively rate-limited by Cloudflare (HTTP 429).
+    On a 429 we honor the server's `retry_after` (capped at max_wait) and retry,
+    so a single throttled call doesn't lose its seat number.
     """
-    try:
-        resp = requests.post(
-            GRAPH_URL,
-            json={"query": SEAT_QUERY, "variables": {"sid": int(showtime_id)}},
-            headers=HEADERS,
-            impersonate="chrome",
-            timeout=20,
-        )
-        if resp.status_code == 429:
+    import time as _time
+    for attempt in range(retries + 1):
+        try:
+            resp = requests.post(
+                GRAPH_URL,
+                json={"query": SEAT_QUERY, "variables": {"sid": int(showtime_id)}},
+                headers=HEADERS,
+                impersonate="chrome",
+                timeout=20,
+            )
+            if resp.status_code == 429:
+                if attempt >= retries:
+                    return None, None
+                # Respect Cloudflare's retry_after when present, else back off.
+                wait = 30
+                try:
+                    wait = int(resp.json().get("retry_after", 30))
+                except Exception:
+                    pass
+                _time.sleep(min(wait, max_wait))
+                continue
+            data = resp.json()
+            st = ((data.get("data") or {}).get("viewer") or {}).get("showtime") or {}
+            layout = st.get("seatingLayout") or {}
+            seats = layout.get("seats") or []
+            if not seats:
+                return None, None
+            available = sum(1 for s in seats if s.get("available"))
+            total = sum(1 for s in seats if s.get("shouldDisplay"))
+            return available, total
+        except Exception:
             return None, None
-        data = resp.json()
-        st = ((data.get("data") or {}).get("viewer") or {}).get("showtime") or {}
-        layout = st.get("seatingLayout") or {}
-        seats = layout.get("seats") or []
-        if not seats:
-            return None, None
-        available = sum(1 for s in seats if s.get("available"))
-        total = sum(1 for s in seats if s.get("shouldDisplay"))
-        return available, total
-    except Exception:
-        return None, None
+    return None, None
 
 
 def get_selectable_dates(movie_slug):

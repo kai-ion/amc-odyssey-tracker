@@ -27,8 +27,11 @@ MOVIE_SLUG = "the-odyssey-76238"
 # Only these 3 AMC theaters have true IMAX 70mm film projectors (per r-imax/imaxguide).
 # amcSlug -> AMC GraphQL fallback; fandangoTms -> Fandango primary source.
 THEATERS = [
+    # Lincoln Square's Fandango TMS couldn't be verified (candidates returned empty
+    # or lacked IMAX 70mm), so leave it unset — fetch_showtimes falls back to the
+    # AMC GraphQL API by slug, which returns its IMAX 70mm showtimes correctly.
     {"id": "amc-lincoln-square-13", "name": "AMC Lincoln Square 13", "location": "New York, NY",
-     "tz": "America/New_York", "fandangoTms": "AAEWU"},
+     "tz": "America/New_York", "fandangoTms": None},
     {"id": "amc-metreon-16", "name": "AMC Metreon 16 & IMAX", "location": "San Francisco, CA",
      "tz": "America/Los_Angeles", "fandangoTms": "AANEM"},
     {"id": "amc-universal-citywalk-19", "name": "Universal Cinema AMC at CityWalk", "location": "Universal City, CA",
