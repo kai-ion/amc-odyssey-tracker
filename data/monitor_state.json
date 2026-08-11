@@ -1,4 +1,35 @@
 {
-  "showtimes": {},
-  "last_run": "2026-08-11T02:28:24.118555+00:00"
+  "showtimes": {
+    "145377414": {
+      "theater": "AMC Metreon 16 & IMAX",
+      "theaterId": "amc-metreon-16",
+      "tz": "America/Los_Angeles",
+      "date": "2026-08-13",
+      "datetimeUtc": "2026-08-13T17:00:00.000Z",
+      "format": "IMAX 70mm",
+      "status": "AlmostFull",
+      "available": true
+    },
+    "145377415": {
+      "theater": "AMC Metreon 16 & IMAX",
+      "theaterId": "amc-metreon-16",
+      "tz": "America/Los_Angeles",
+      "date": "2026-08-13",
+      "datetimeUtc": "2026-08-13T21:00:00.000Z",
+      "format": "IMAX 70mm",
+      "status": "AlmostFull",
+      "available": true
+    },
+    "145377416": {
+      "theater": "AMC Metreon 16 & IMAX",
+      "theaterId": "amc-metreon-16",
+      "tz": "America/Los_Angeles",
+      "date": "2026-08-13",
+      "datetimeUtc": "2026-08-14T06:00:00.000Z",
+      "format": "IMAX 70mm",
+      "status": "AlmostFull",
+      "available": true
+    }
+  },
+  "last_run": "2026-08-11T04:04:34.517282+00:00"
 }
