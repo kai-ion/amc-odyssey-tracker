@@ -1,95 +1,5 @@
 {
   "showtimes": {
-    "145499918": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-16",
-      "datetimeUtc": "2026-08-16T10:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145377447": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-16",
-      "datetimeUtc": "2026-08-16T14:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145322309": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-16",
-      "datetimeUtc": "2026-08-16T18:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145322310": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-16",
-      "datetimeUtc": "2026-08-16T22:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145322311": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-16",
-      "datetimeUtc": "2026-08-17T02:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145922905": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-16",
-      "datetimeUtc": "2026-08-16T12:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145711572": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-16",
-      "datetimeUtc": "2026-08-16T16:30:00.000Z",
-      "format": "70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145711573": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-16",
-      "datetimeUtc": "2026-08-16T20:30:00.000Z",
-      "format": "70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145711574": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-16",
-      "datetimeUtc": "2026-08-17T00:30:00.000Z",
-      "format": "70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
     "145377448": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
@@ -156,76 +66,6 @@
       "tz": "America/New_York",
       "date": "2026-08-17",
       "datetimeUtc": "2026-08-18T00:30:00.000Z",
-      "format": "70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145377452": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-18",
-      "datetimeUtc": "2026-08-18T14:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145377453": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-18",
-      "datetimeUtc": "2026-08-18T18:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145377454": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-18",
-      "datetimeUtc": "2026-08-18T22:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145377455": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-18",
-      "datetimeUtc": "2026-08-19T02:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145711578": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-18",
-      "datetimeUtc": "2026-08-18T16:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145711579": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-18",
-      "datetimeUtc": "2026-08-18T20:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145711580": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-18",
-      "datetimeUtc": "2026-08-19T00:30:00.000Z",
       "format": "70mm",
       "status": "AlmostFull",
       "available": true
@@ -310,96 +150,6 @@
       "status": "AlmostFull",
       "available": true
     },
-    "146204454": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-22",
-      "datetimeUtc": "2026-08-22T10:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681747": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-22",
-      "datetimeUtc": "2026-08-22T14:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681748": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-22",
-      "datetimeUtc": "2026-08-22T18:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145674733": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-22",
-      "datetimeUtc": "2026-08-22T22:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681749": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-22",
-      "datetimeUtc": "2026-08-23T02:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145701522": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-22",
-      "datetimeUtc": "2026-08-23T06:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145711590": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-22",
-      "datetimeUtc": "2026-08-22T16:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145711591": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-22",
-      "datetimeUtc": "2026-08-22T20:30:00.000Z",
-      "format": "70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145711592": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-22",
-      "datetimeUtc": "2026-08-23T00:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
     "145681752": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
@@ -470,292 +220,82 @@
       "status": "Sellable",
       "available": true
     },
-    "145681744": {
+    "145681730": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
       "tz": "America/New_York",
-      "date": "2026-08-25",
-      "datetimeUtc": "2026-08-25T14:00:00.000Z",
+      "date": "2026-08-28",
+      "datetimeUtc": "2026-08-28T14:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145681745": {
+    "145681731": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
       "tz": "America/New_York",
-      "date": "2026-08-25",
-      "datetimeUtc": "2026-08-25T18:00:00.000Z",
+      "date": "2026-08-28",
+      "datetimeUtc": "2026-08-28T18:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145674734": {
+    "145676922": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
       "tz": "America/New_York",
-      "date": "2026-08-25",
-      "datetimeUtc": "2026-08-25T22:00:00.000Z",
+      "date": "2026-08-28",
+      "datetimeUtc": "2026-08-28T22:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145681746": {
+    "145681732": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
       "tz": "America/New_York",
-      "date": "2026-08-25",
-      "datetimeUtc": "2026-08-26T02:00:00.000Z",
+      "date": "2026-08-28",
+      "datetimeUtc": "2026-08-29T02:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145711599": {
+    "145701523": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
       "tz": "America/New_York",
-      "date": "2026-08-25",
-      "datetimeUtc": "2026-08-25T16:30:00.000Z",
+      "date": "2026-08-28",
+      "datetimeUtc": "2026-08-29T06:00:00.000Z",
+      "format": "IMAX 70mm",
+      "status": "Sellable",
+      "available": true
+    },
+    "145895500": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-08-28",
+      "datetimeUtc": "2026-08-28T16:30:00.000Z",
       "format": "70mm",
       "status": "Sellable",
       "available": true
     },
-    "145711600": {
+    "145895501": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
       "tz": "America/New_York",
-      "date": "2026-08-25",
-      "datetimeUtc": "2026-08-25T20:30:00.000Z",
+      "date": "2026-08-28",
+      "datetimeUtc": "2026-08-28T20:30:00.000Z",
       "format": "70mm",
       "status": "Sellable",
       "available": true
     },
-    "145711601": {
+    "145895502": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
       "tz": "America/New_York",
-      "date": "2026-08-25",
-      "datetimeUtc": "2026-08-26T00:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145681735": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-26",
-      "datetimeUtc": "2026-08-26T14:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681736": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-26",
-      "datetimeUtc": "2026-08-26T18:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145674735": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-26",
-      "datetimeUtc": "2026-08-26T22:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681737": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-26",
-      "datetimeUtc": "2026-08-27T02:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145711602": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-26",
-      "datetimeUtc": "2026-08-26T16:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145711603": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-26",
-      "datetimeUtc": "2026-08-26T20:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145711604": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-26",
-      "datetimeUtc": "2026-08-27T00:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145681738": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-27",
-      "datetimeUtc": "2026-08-27T14:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681739": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-27",
-      "datetimeUtc": "2026-08-27T18:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681740": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-27",
-      "datetimeUtc": "2026-08-27T22:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681729": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-27",
-      "datetimeUtc": "2026-08-28T02:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145711605": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-27",
-      "datetimeUtc": "2026-08-27T16:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145711606": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-27",
-      "datetimeUtc": "2026-08-27T20:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145711607": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-27",
-      "datetimeUtc": "2026-08-28T00:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "146204932": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-30",
-      "datetimeUtc": "2026-08-30T10:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145681724": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-30",
-      "datetimeUtc": "2026-08-30T14:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681725": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-30",
-      "datetimeUtc": "2026-08-30T18:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681726": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-30",
-      "datetimeUtc": "2026-08-30T22:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681727": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-30",
-      "datetimeUtc": "2026-08-31T02:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145895512": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-30",
-      "datetimeUtc": "2026-08-30T16:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145895513": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-30",
-      "datetimeUtc": "2026-08-30T20:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145895514": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-08-30",
-      "datetimeUtc": "2026-08-31T00:30:00.000Z",
+      "date": "2026-08-28",
+      "datetimeUtc": "2026-08-29T00:30:00.000Z",
       "format": "70mm",
       "status": "Sellable",
       "available": true
@@ -960,116 +500,6 @@
       "status": "Sellable",
       "available": true
     },
-    "145681707": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-04",
-      "datetimeUtc": "2026-09-04T14:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681708": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-04",
-      "datetimeUtc": "2026-09-04T18:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145676924": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-04",
-      "datetimeUtc": "2026-09-04T22:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681709": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-04",
-      "datetimeUtc": "2026-09-05T02:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681710": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-05",
-      "datetimeUtc": "2026-09-05T14:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681699": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-05",
-      "datetimeUtc": "2026-09-05T18:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145676412": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-05",
-      "datetimeUtc": "2026-09-05T22:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681700": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-05",
-      "datetimeUtc": "2026-09-06T02:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145901827": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-05",
-      "datetimeUtc": "2026-09-05T16:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145901828": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-05",
-      "datetimeUtc": "2026-09-05T20:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145901829": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-05",
-      "datetimeUtc": "2026-09-06T00:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
     "145681701": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
@@ -1130,76 +560,6 @@
       "status": "Sellable",
       "available": true
     },
-    "145681704": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-07",
-      "datetimeUtc": "2026-09-07T14:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681693": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-07",
-      "datetimeUtc": "2026-09-07T18:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681694": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-07",
-      "datetimeUtc": "2026-09-07T22:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681695": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-07",
-      "datetimeUtc": "2026-09-08T02:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145901833": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-07",
-      "datetimeUtc": "2026-09-07T16:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145901834": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-07",
-      "datetimeUtc": "2026-09-07T20:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
-    "145901835": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-07",
-      "datetimeUtc": "2026-09-08T00:30:00.000Z",
-      "format": "70mm",
-      "status": "Sellable",
-      "available": true
-    },
     "145901836": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
@@ -1227,46 +587,6 @@
       "date": "2026-09-08",
       "datetimeUtc": "2026-09-09T00:30:00.000Z",
       "format": "70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681692": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-11",
-      "datetimeUtc": "2026-09-11T14:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681681": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-11",
-      "datetimeUtc": "2026-09-11T18:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145676925": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-11",
-      "datetimeUtc": "2026-09-11T22:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681682": {
-      "theater": "AMC Lincoln Square 13",
-      "theaterId": "amc-lincoln-square-13",
-      "tz": "America/New_York",
-      "date": "2026-09-11",
-      "datetimeUtc": "2026-09-12T02:00:00.000Z",
-      "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
@@ -1350,162 +670,82 @@
       "status": "AlmostFull",
       "available": true
     },
-    "145377425": {
+    "145377437": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-16",
-      "datetimeUtc": "2026-08-16T17:00:00.000Z",
+      "date": "2026-08-19",
+      "datetimeUtc": "2026-08-19T17:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145377426": {
+    "145377438": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-16",
-      "datetimeUtc": "2026-08-16T21:00:00.000Z",
+      "date": "2026-08-19",
+      "datetimeUtc": "2026-08-19T21:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145377427": {
+    "145377439": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-16",
-      "datetimeUtc": "2026-08-17T01:00:00.000Z",
+      "date": "2026-08-19",
+      "datetimeUtc": "2026-08-20T01:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145377428": {
+    "145377440": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-16",
-      "datetimeUtc": "2026-08-17T05:00:00.000Z",
+      "date": "2026-08-19",
+      "datetimeUtc": "2026-08-20T05:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145377433": {
+    "145681309": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-18",
-      "datetimeUtc": "2026-08-18T17:00:00.000Z",
+      "date": "2026-08-21",
+      "datetimeUtc": "2026-08-21T17:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145377434": {
+    "145681310": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-18",
-      "datetimeUtc": "2026-08-18T21:00:00.000Z",
+      "date": "2026-08-21",
+      "datetimeUtc": "2026-08-21T21:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145377435": {
+    "145681385": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-18",
-      "datetimeUtc": "2026-08-19T01:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "Soldout",
-      "available": false
-    },
-    "145377436": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-08-18",
-      "datetimeUtc": "2026-08-19T05:00:00.000Z",
+      "date": "2026-08-21",
+      "datetimeUtc": "2026-08-22T01:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145681305": {
+    "145681386": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-20",
-      "datetimeUtc": "2026-08-20T17:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681306": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-08-20",
-      "datetimeUtc": "2026-08-20T21:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681307": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-08-20",
-      "datetimeUtc": "2026-08-21T01:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681308": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-08-20",
-      "datetimeUtc": "2026-08-21T05:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145679721": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-08-22",
-      "datetimeUtc": "2026-08-22T17:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681387": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-08-22",
-      "datetimeUtc": "2026-08-22T21:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681388": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-08-22",
-      "datetimeUtc": "2026-08-23T01:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681389": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-08-22",
-      "datetimeUtc": "2026-08-23T05:00:00.000Z",
+      "date": "2026-08-21",
+      "datetimeUtc": "2026-08-22T05:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
@@ -1550,42 +790,42 @@
       "status": "AlmostFull",
       "available": true
     },
-    "145681373": {
+    "145679720": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-25",
-      "datetimeUtc": "2026-08-25T17:00:00.000Z",
+      "date": "2026-08-24",
+      "datetimeUtc": "2026-08-24T17:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145681374": {
+    "145681382": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-25",
-      "datetimeUtc": "2026-08-25T21:00:00.000Z",
+      "date": "2026-08-24",
+      "datetimeUtc": "2026-08-24T21:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145681375": {
+    "145681383": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-25",
-      "datetimeUtc": "2026-08-26T01:00:00.000Z",
+      "date": "2026-08-24",
+      "datetimeUtc": "2026-08-25T01:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145681376": {
+    "145681384": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-25",
-      "datetimeUtc": "2026-08-26T05:00:00.000Z",
+      "date": "2026-08-24",
+      "datetimeUtc": "2026-08-25T05:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
@@ -1670,42 +910,42 @@
       "status": "AlmostFull",
       "available": true
     },
-    "145681372": {
+    "145681364": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-28",
-      "datetimeUtc": "2026-08-28T17:00:00.000Z",
+      "date": "2026-08-29",
+      "datetimeUtc": "2026-08-29T17:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145681361": {
+    "145681365": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-28",
-      "datetimeUtc": "2026-08-28T21:00:00.000Z",
+      "date": "2026-08-29",
+      "datetimeUtc": "2026-08-29T21:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145681362": {
+    "145681366": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-28",
-      "datetimeUtc": "2026-08-29T01:00:00.000Z",
+      "date": "2026-08-29",
+      "datetimeUtc": "2026-08-30T01:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "145681363": {
+    "145681355": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
       "tz": "America/Los_Angeles",
-      "date": "2026-08-28",
-      "datetimeUtc": "2026-08-29T05:00:00.000Z",
+      "date": "2026-08-29",
+      "datetimeUtc": "2026-08-30T05:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
@@ -1750,126 +990,6 @@
       "status": "AlmostFull",
       "available": true
     },
-    "145681359": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-08-31",
-      "datetimeUtc": "2026-08-31T17:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681360": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-08-31",
-      "datetimeUtc": "2026-08-31T21:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681349": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-08-31",
-      "datetimeUtc": "2026-09-01T01:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681350": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-08-31",
-      "datetimeUtc": "2026-09-01T05:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681351": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-01",
-      "datetimeUtc": "2026-09-01T17:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681352": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-01",
-      "datetimeUtc": "2026-09-01T21:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681353": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-01",
-      "datetimeUtc": "2026-09-02T01:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681354": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-01",
-      "datetimeUtc": "2026-09-02T05:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681343": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-02",
-      "datetimeUtc": "2026-09-02T17:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681344": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-02",
-      "datetimeUtc": "2026-09-02T21:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681345": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-02",
-      "datetimeUtc": "2026-09-03T01:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681346": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-02",
-      "datetimeUtc": "2026-09-03T05:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
     "145681347": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
@@ -1906,86 +1026,6 @@
       "tz": "America/Los_Angeles",
       "date": "2026-09-03",
       "datetimeUtc": "2026-09-04T05:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681339": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-04",
-      "datetimeUtc": "2026-09-04T17:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681340": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-04",
-      "datetimeUtc": "2026-09-04T21:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681341": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-04",
-      "datetimeUtc": "2026-09-05T01:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681342": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-04",
-      "datetimeUtc": "2026-09-05T05:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681335": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-06",
-      "datetimeUtc": "2026-09-06T17:30:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681336": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-06",
-      "datetimeUtc": "2026-09-06T21:30:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681325": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-06",
-      "datetimeUtc": "2026-09-07T01:30:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681326": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-06",
-      "datetimeUtc": "2026-09-07T05:30:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
@@ -2069,127 +1109,7 @@
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
-    },
-    "145681322": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-09",
-      "datetimeUtc": "2026-09-09T17:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681323": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-09",
-      "datetimeUtc": "2026-09-09T21:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681324": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-09",
-      "datetimeUtc": "2026-09-10T01:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681313": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-09",
-      "datetimeUtc": "2026-09-10T05:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681314": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-10",
-      "datetimeUtc": "2026-09-10T17:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681315": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-10",
-      "datetimeUtc": "2026-09-10T21:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681316": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-10",
-      "datetimeUtc": "2026-09-11T01:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681317": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-10",
-      "datetimeUtc": "2026-09-11T05:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681318": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-11",
-      "datetimeUtc": "2026-09-11T17:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681311": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-11",
-      "datetimeUtc": "2026-09-11T21:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145677340": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-11",
-      "datetimeUtc": "2026-09-12T01:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681312": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-11",
-      "datetimeUtc": "2026-09-12T05:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
     }
   },
-  "last_run": "2026-08-16T04:07:04.058881+00:00"
+  "last_run": "2026-08-16T04:21:09.957988+00:00"
 }
