@@ -57,7 +57,7 @@
       "date": "2026-08-25",
       "datetimeUtc": "2026-08-25T20:30:00.000Z",
       "format": "70mm",
-      "status": "Sellable",
+      "status": "AlmostFull",
       "available": true
     },
     "145711601": {
@@ -1577,8 +1577,8 @@
       "date": "2026-08-25",
       "datetimeUtc": "2026-08-25T17:00:00.000Z",
       "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
+      "status": "PastSellDate",
+      "available": false
     },
     "145681374": {
       "theater": "AMC Metreon 16 & IMAX",
@@ -2281,5 +2281,5 @@
       "available": true
     }
   },
-  "last_run": "2026-08-25T17:06:57.692679+00:00"
+  "last_run": "2026-08-25T17:44:24.138072+00:00"
 }
