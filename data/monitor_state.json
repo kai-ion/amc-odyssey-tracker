@@ -57,8 +57,8 @@
       "date": "2026-08-25",
       "datetimeUtc": "2026-08-25T20:30:00.000Z",
       "format": "70mm",
-      "status": "AlmostFull",
-      "available": true
+      "status": "PastSellDate",
+      "available": false
     },
     "145711601": {
       "theater": "AMC Lincoln Square 13",
@@ -2281,5 +2281,5 @@
       "available": true
     }
   },
-  "last_run": "2026-08-25T20:50:42.655996+00:00"
+  "last_run": "2026-08-25T21:16:59.986081+00:00"
 }
