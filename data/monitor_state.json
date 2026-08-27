@@ -257,7 +257,7 @@
       "date": "2026-08-29",
       "datetimeUtc": "2026-08-29T20:30:00.000Z",
       "format": "70mm",
-      "status": "Sellable",
+      "status": "AlmostFull",
       "available": true
     },
     "145895505": {
@@ -2071,5 +2071,5 @@
       "available": true
     }
   },
-  "last_run": "2026-08-27T00:52:18.925640+00:00"
+  "last_run": "2026-08-27T10:59:41.162166+00:00"
 }
