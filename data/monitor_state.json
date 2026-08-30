@@ -27,8 +27,8 @@
       "date": "2026-08-30",
       "datetimeUtc": "2026-08-30T18:00:00.000Z",
       "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
+      "status": "PastSellDate",
+      "available": false
     },
     "145681726": {
       "theater": "AMC Lincoln Square 13",
@@ -67,8 +67,8 @@
       "date": "2026-08-30",
       "datetimeUtc": "2026-08-30T16:30:00.000Z",
       "format": "70mm",
-      "status": "AlmostFull",
-      "available": true
+      "status": "PastSellDate",
+      "available": false
     },
     "145895513": {
       "theater": "AMC Lincoln Square 13",
@@ -1157,8 +1157,8 @@
       "date": "2026-08-30",
       "datetimeUtc": "2026-08-30T17:00:00.000Z",
       "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
+      "status": "PastSellDate",
+      "available": false
     },
     "145681357": {
       "theater": "AMC Metreon 16 & IMAX",
@@ -1510,46 +1510,6 @@
       "status": "AlmostFull",
       "available": true
     },
-    "145681330": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-08",
-      "datetimeUtc": "2026-09-08T17:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681319": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-08",
-      "datetimeUtc": "2026-09-08T21:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
-    "145681320": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-08",
-      "datetimeUtc": "2026-09-09T01:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "Soldout",
-      "available": false
-    },
-    "145681321": {
-      "theater": "AMC Metreon 16 & IMAX",
-      "theaterId": "amc-metreon-16",
-      "tz": "America/Los_Angeles",
-      "date": "2026-09-08",
-      "datetimeUtc": "2026-09-09T05:00:00.000Z",
-      "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
-    },
     "145681322": {
       "theater": "AMC Metreon 16 & IMAX",
       "theaterId": "amc-metreon-16",
@@ -1671,5 +1631,5 @@
       "available": true
     }
   },
-  "last_run": "2026-08-30T15:04:25.036170+00:00"
+  "last_run": "2026-08-30T18:37:29.879516+00:00"
 }
