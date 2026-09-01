@@ -17,8 +17,8 @@
       "date": "2026-09-01",
       "datetimeUtc": "2026-09-01T18:00:00.000Z",
       "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
+      "status": "PastSellDate",
+      "available": false
     },
     "145681722": {
       "theater": "AMC Lincoln Square 13",
@@ -47,8 +47,8 @@
       "date": "2026-09-01",
       "datetimeUtc": "2026-09-01T16:30:00.000Z",
       "format": "70mm",
-      "status": "Sellable",
-      "available": true
+      "status": "PastSellDate",
+      "available": false
     },
     "146502362": {
       "theater": "AMC Lincoln Square 13",
@@ -997,8 +997,8 @@
       "date": "2026-09-01",
       "datetimeUtc": "2026-09-01T17:00:00.000Z",
       "format": "IMAX 70mm",
-      "status": "AlmostFull",
-      "available": true
+      "status": "PastSellDate",
+      "available": false
     },
     "145681352": {
       "theater": "AMC Metreon 16 & IMAX",
@@ -1431,5 +1431,5 @@
       "available": true
     }
   },
-  "last_run": "2026-09-01T16:35:45.046869+00:00"
+  "last_run": "2026-09-01T19:34:53.532861+00:00"
 }
