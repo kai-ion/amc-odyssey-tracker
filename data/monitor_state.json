@@ -1067,7 +1067,7 @@
       "date": "2026-09-18",
       "datetimeUtc": "2026-09-19T02:00:00.000Z",
       "format": "IMAX 70mm",
-      "status": "Sellable",
+      "status": "AlmostFull",
       "available": true
     },
     "146825761": {
@@ -1107,7 +1107,7 @@
       "date": "2026-09-20",
       "datetimeUtc": "2026-09-20T14:00:00.000Z",
       "format": "IMAX 70mm",
-      "status": "Sellable",
+      "status": "AlmostFull",
       "available": true
     },
     "146818567": {
@@ -1287,7 +1287,7 @@
       "date": "2026-09-25",
       "datetimeUtc": "2026-09-25T22:00:00.000Z",
       "format": "IMAX 70mm",
-      "status": "Sellable",
+      "status": "AlmostFull",
       "available": true
     },
     "146825754": {
@@ -1367,7 +1367,7 @@
       "date": "2026-09-27",
       "datetimeUtc": "2026-09-27T22:00:00.000Z",
       "format": "IMAX 70mm",
-      "status": "Sellable",
+      "status": "AlmostFull",
       "available": true
     },
     "146825746": {
@@ -1397,7 +1397,7 @@
       "date": "2026-09-28",
       "datetimeUtc": "2026-09-28T22:00:00.000Z",
       "format": "IMAX 70mm",
-      "status": "Sellable",
+      "status": "AlmostFull",
       "available": true
     },
     "146825737": {
@@ -1791,5 +1791,5 @@
       "available": true
     }
   },
-  "last_run": "2026-09-04T04:57:42.523929+00:00"
+  "last_run": "2026-09-04T09:29:19.309743+00:00"
 }
