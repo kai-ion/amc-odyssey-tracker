@@ -47,8 +47,8 @@
       "date": "2026-09-06",
       "datetimeUtc": "2026-09-06T20:30:00.000Z",
       "format": "70mm",
-      "status": "AlmostFull",
-      "available": true
+      "status": "PastSellDate",
+      "available": false
     },
     "145901832": {
       "theater": "AMC Lincoln Square 13",
@@ -57,7 +57,7 @@
       "date": "2026-09-06",
       "datetimeUtc": "2026-09-07T00:30:00.000Z",
       "format": "70mm",
-      "status": "Sellable",
+      "status": "AlmostFull",
       "available": true
     },
     "145681704": {
@@ -867,7 +867,7 @@
       "date": "2026-09-18",
       "datetimeUtc": "2026-09-18T14:00:00.000Z",
       "format": "IMAX 70mm",
-      "status": "Sellable",
+      "status": "AlmostFull",
       "available": true
     },
     "146818564": {
@@ -1581,5 +1581,5 @@
       "available": true
     }
   },
-  "last_run": "2026-09-06T19:36:41.113341+00:00"
+  "last_run": "2026-09-06T21:42:49.939163+00:00"
 }
