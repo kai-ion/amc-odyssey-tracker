@@ -150,72 +150,72 @@
       "status": "Sellable",
       "available": true
     },
-    "146369661": {
+    "146369658": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
       "tz": "America/New_York",
-      "date": "2026-09-14",
-      "datetimeUtc": "2026-09-14T14:00:00.000Z",
+      "date": "2026-09-15",
+      "datetimeUtc": "2026-09-15T14:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "146369655": {
+    "146369659": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
       "tz": "America/New_York",
-      "date": "2026-09-14",
-      "datetimeUtc": "2026-09-14T18:00:00.000Z",
+      "date": "2026-09-15",
+      "datetimeUtc": "2026-09-15T18:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "146369654": {
+    "146369657": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
       "tz": "America/New_York",
-      "date": "2026-09-14",
-      "datetimeUtc": "2026-09-14T22:00:00.000Z",
+      "date": "2026-09-15",
+      "datetimeUtc": "2026-09-15T22:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "146369656": {
+    "146369660": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
       "tz": "America/New_York",
-      "date": "2026-09-14",
-      "datetimeUtc": "2026-09-15T02:00:00.000Z",
+      "date": "2026-09-15",
+      "datetimeUtc": "2026-09-16T02:00:00.000Z",
       "format": "IMAX 70mm",
       "status": "AlmostFull",
       "available": true
     },
-    "146780817": {
+    "146780808": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
       "tz": "America/New_York",
-      "date": "2026-09-14",
-      "datetimeUtc": "2026-09-14T16:30:00.000Z",
+      "date": "2026-09-15",
+      "datetimeUtc": "2026-09-15T16:30:00.000Z",
       "format": "70mm",
       "status": "Sellable",
       "available": true
     },
-    "146780818": {
+    "146780809": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
       "tz": "America/New_York",
-      "date": "2026-09-14",
-      "datetimeUtc": "2026-09-14T20:30:00.000Z",
+      "date": "2026-09-15",
+      "datetimeUtc": "2026-09-15T20:30:00.000Z",
       "format": "70mm",
       "status": "Sellable",
       "available": true
     },
-    "146780819": {
+    "146780810": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
       "tz": "America/New_York",
-      "date": "2026-09-14",
-      "datetimeUtc": "2026-09-15T00:30:00.000Z",
+      "date": "2026-09-15",
+      "datetimeUtc": "2026-09-16T00:30:00.000Z",
       "format": "70mm",
       "status": "Sellable",
       "available": true
@@ -730,6 +730,76 @@
       "status": "Sellable",
       "available": true
     },
+    "146849008": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-09-23",
+      "datetimeUtc": "2026-09-23T14:00:00.000Z",
+      "format": "IMAX 70mm",
+      "status": "Sellable",
+      "available": true
+    },
+    "146825759": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-09-23",
+      "datetimeUtc": "2026-09-23T18:00:00.000Z",
+      "format": "IMAX 70mm",
+      "status": "AlmostFull",
+      "available": true
+    },
+    "146825760": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-09-23",
+      "datetimeUtc": "2026-09-23T22:00:00.000Z",
+      "format": "IMAX 70mm",
+      "status": "AlmostFull",
+      "available": true
+    },
+    "146825749": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-09-23",
+      "datetimeUtc": "2026-09-24T02:00:00.000Z",
+      "format": "IMAX 70mm",
+      "status": "AlmostFull",
+      "available": true
+    },
+    "146996406": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-09-23",
+      "datetimeUtc": "2026-09-23T16:30:00.000Z",
+      "format": "70mm",
+      "status": "Sellable",
+      "available": true
+    },
+    "146996407": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-09-23",
+      "datetimeUtc": "2026-09-23T20:30:00.000Z",
+      "format": "70mm",
+      "status": "Sellable",
+      "available": true
+    },
+    "146996409": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-09-23",
+      "datetimeUtc": "2026-09-24T00:30:00.000Z",
+      "format": "70mm",
+      "status": "Sellable",
+      "available": true
+    },
     "146852479": {
       "theater": "AMC Lincoln Square 13",
       "theaterId": "amc-lincoln-square-13",
@@ -807,6 +877,56 @@
       "date": "2026-09-24",
       "datetimeUtc": "2026-09-25T00:30:00.000Z",
       "format": "70mm",
+      "status": "Sellable",
+      "available": true
+    },
+    "146825753": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-09-25",
+      "datetimeUtc": "2026-09-25T14:00:00.000Z",
+      "format": "IMAX 70mm",
+      "status": "AlmostFull",
+      "available": true
+    },
+    "146818569": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-09-25",
+      "datetimeUtc": "2026-09-25T18:00:00.000Z",
+      "format": "IMAX 70mm",
+      "status": "AlmostFull",
+      "available": true
+    },
+    "146818570": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-09-25",
+      "datetimeUtc": "2026-09-25T22:00:00.000Z",
+      "format": "IMAX 70mm",
+      "status": "AlmostFull",
+      "available": true
+    },
+    "146825754": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-09-25",
+      "datetimeUtc": "2026-09-26T02:00:00.000Z",
+      "format": "IMAX 70mm",
+      "status": "AlmostFull",
+      "available": true
+    },
+    "146863318": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-09-25",
+      "datetimeUtc": "2026-09-26T06:00:00.000Z",
+      "format": "IMAX 70mm",
       "status": "Sellable",
       "available": true
     },
@@ -1021,5 +1141,5 @@
       "available": true
     }
   },
-  "last_run": "2026-09-12T10:56:54.391578+00:00"
+  "last_run": "2026-09-12T13:56:56.776637+00:00"
 }
