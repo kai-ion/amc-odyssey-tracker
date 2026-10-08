@@ -1,4 +1,25 @@
 {
-  "showtimes": {},
-  "last_run": "2026-10-08T07:16:17.685816+00:00"
+  "showtimes": {
+    "147667505": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-10-09",
+      "datetimeUtc": "2026-10-09T23:00:00.000Z",
+      "format": "IMAX 70mm",
+      "status": "AlmostFull",
+      "available": true
+    },
+    "147667506": {
+      "theater": "AMC Lincoln Square 13",
+      "theaterId": "amc-lincoln-square-13",
+      "tz": "America/New_York",
+      "date": "2026-10-09",
+      "datetimeUtc": "2026-10-10T03:00:00.000Z",
+      "format": "IMAX 70mm",
+      "status": "AlmostFull",
+      "available": true
+    }
+  },
+  "last_run": "2026-10-08T14:40:26.062716+00:00"
 }
